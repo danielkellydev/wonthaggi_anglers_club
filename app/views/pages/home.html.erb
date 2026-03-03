@@ -1,0 +1,226 @@
+<%# ══════════════════════════════════════════════════════════════
+     Section 1 — Hero Banner
+     ══════════════════════════════════════════════════════════════ %>
+<section class="relative min-h-[60vh] lg:min-h-[70vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-navy-950 via-navy-900 to-ocean-800">
+  <%# Animated placeholder — three pulsing gradient circles %>
+  <div id="hero-animation-container" class="absolute inset-0" aria-hidden="true">
+    <div class="absolute top-1/4 left-1/4 w-72 h-72 md:w-96 md:h-96 bg-ocean-700/30 rounded-full blur-3xl animate-pulse [animation-duration:4s]"></div>
+    <div class="absolute bottom-1/3 right-1/4 w-64 h-64 md:w-80 md:h-80 bg-sand-400/20 rounded-full blur-3xl animate-pulse [animation-duration:5s] [animation-delay:1s]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 md:w-72 md:h-72 bg-coral-400/15 rounded-full blur-3xl animate-pulse [animation-duration:6s] [animation-delay:2s]"></div>
+  </div>
+
+  <%# Hero content %>
+  <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-4">
+      Wonthaggi Angling Club
+    </h1>
+    <p class="text-lg sm:text-xl text-navy-200 max-w-2xl mx-auto mb-8">
+      Bass Coast's home of fishing since the early days. Join our community of passionate anglers — from weekend warriors to seasoned pros.
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="#membership" class="inline-flex items-center px-8 py-3 rounded-lg text-lg font-semibold bg-sand-400 text-navy-950 hover:bg-sand-300 transition-colors shadow-lg hover:shadow-xl">
+        Join Us Today
+      </a>
+      <a href="#news" class="inline-flex items-center px-8 py-3 rounded-lg text-lg font-semibold border-2 border-white/30 text-white hover:bg-white/10 transition-colors">
+        Latest News
+      </a>
+    </div>
+  </div>
+
+  <%# Bottom gradient fade %>
+  <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-offwhite to-transparent"></div>
+</section>
+
+<%# ══════════════════════════════════════════════════════════════
+     Section 2 — Latest News / Blog
+     ══════════════════════════════════════════════════════════════ %>
+<section id="news" class="py-16 sm:py-20 bg-offwhite">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <%# Section heading %>
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-bold text-charcoal">Latest News</h2>
+      <div class="mt-3 mx-auto w-16 h-1 rounded-full bg-sand-400"></div>
+    </div>
+
+    <%# News cards %>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <%# Card 1 — Event %>
+      <article class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden group">
+        <div class="h-48 bg-gradient-to-br from-ocean-600 to-ocean-800 relative">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-ocean-100 text-ocean-800">Event</span>
+            <time class="text-sm text-gray-500">28 Feb 2026</time>
+          </div>
+          <h3 class="text-lg font-bold text-charcoal mb-2 group-hover:text-ocean-700 transition-colors">
+            Summer Fishing Competition
+          </h3>
+          <p class="text-gray-600 text-sm leading-relaxed mb-4">
+            Our annual summer comp is back! Head down to Inverloch jetty for a day of friendly competition and great prizes.
+          </p>
+          <a href="#" class="text-sm font-semibold text-ocean-700 hover:text-ocean-600 transition-colors">
+            Read More &rarr;
+          </a>
+        </div>
+      </article>
+
+      <%# Card 2 — Report %>
+      <article class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden group">
+        <div class="h-48 bg-gradient-to-br from-sand-400 to-sand-600 relative">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sand-100 text-sand-800">Report</span>
+            <time class="text-sm text-gray-500">20 Feb 2026</time>
+          </div>
+          <h3 class="text-lg font-bold text-charcoal mb-2 group-hover:text-ocean-700 transition-colors">
+            February Fishing Report
+          </h3>
+          <p class="text-gray-600 text-sm leading-relaxed mb-4">
+            Great catches reported this month across the Bass Coast. Flathead and whiting are firing at Cape Paterson.
+          </p>
+          <a href="#" class="text-sm font-semibold text-ocean-700 hover:text-ocean-600 transition-colors">
+            Read More &rarr;
+          </a>
+        </div>
+      </article>
+
+      <%# Card 3 — Announcement %>
+      <article class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden group">
+        <div class="h-48 bg-gradient-to-br from-coral-400 to-coral-600 relative">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-coral-50 text-coral-700">Announcement</span>
+            <time class="text-sm text-gray-500">12 Feb 2026</time>
+          </div>
+          <h3 class="text-lg font-bold text-charcoal mb-2 group-hover:text-ocean-700 transition-colors">
+            New Clubhouse Hours
+          </h3>
+          <p class="text-gray-600 text-sm leading-relaxed mb-4">
+            We've extended our opening hours on weekends. Drop in Saturday or Sunday for a yarn and check out the latest gear.
+          </p>
+          <a href="#" class="text-sm font-semibold text-ocean-700 hover:text-ocean-600 transition-colors">
+            Read More &rarr;
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<%# ══════════════════════════════════════════════════════════════
+     Section 3 — Membership CTA
+     ══════════════════════════════════════════════════════════════ %>
+<section id="membership" class="py-16 sm:py-20 bg-gradient-to-br from-navy-900 via-navy-800 to-ocean-800 text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <%# Left — emotional text + CTA %>
+      <div>
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4">Become a Member</h2>
+        <div class="w-16 h-1 rounded-full bg-sand-400 mb-6"></div>
+        <p class="text-lg text-navy-200 leading-relaxed mb-6">
+          Whether you're casting your first line or you've been fishing the Bass Coast for decades, there's a place for you at Wonthaggi Angling Club. Join a community that shares your passion.
+        </p>
+        <a href="#" class="inline-flex items-center px-8 py-3 rounded-lg text-lg font-semibold bg-sand-400 text-navy-950 hover:bg-sand-300 transition-colors shadow-lg hover:shadow-xl">
+          Become a Member
+        </a>
+      </div>
+
+      <%# Right — benefit cards %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <%# Benefit 1 — Competitions %>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10 hover:bg-white/15 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-sand-400/20 flex items-center justify-center mb-3">
+            <svg class="h-5 w-5 text-sand-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.996.428-1.817 1.091-2.402 1.902M18.75 4.236c.996.428 1.816 1.091 2.402 1.902M12 2.25c2.29 0 4.376.86 5.963 2.272M12 2.25c-2.29 0-4.376.86-5.963 2.272" />
+            </svg>
+          </div>
+          <h3 class="font-bold text-white mb-1">Competitions</h3>
+          <p class="text-sm text-navy-200">Regular fishing comps with great prizes and good times on the water.</p>
+        </div>
+
+        <%# Benefit 2 — Community %>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10 hover:bg-white/15 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-sand-400/20 flex items-center justify-center mb-3">
+            <svg class="h-5 w-5 text-sand-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+            </svg>
+          </div>
+          <h3 class="font-bold text-white mb-1">Community</h3>
+          <p class="text-sm text-navy-200">A welcoming club for anglers of all ages and skill levels.</p>
+        </div>
+
+        <%# Benefit 3 — Local Knowledge %>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10 hover:bg-white/15 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-sand-400/20 flex items-center justify-center mb-3">
+            <svg class="h-5 w-5 text-sand-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />
+            </svg>
+          </div>
+          <h3 class="font-bold text-white mb-1">Local Knowledge</h3>
+          <p class="text-sm text-navy-200">Decades of experience from Inverloch to Cape Paterson and beyond.</p>
+        </div>
+
+        <%# Benefit 4 — Member Perks %>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10 hover:bg-white/15 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-sand-400/20 flex items-center justify-center mb-3">
+            <svg class="h-5 w-5 text-sand-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+            </svg>
+          </div>
+          <h3 class="font-bold text-white mb-1">Member Perks</h3>
+          <p class="text-sm text-navy-200">Exclusive discounts, gear access, and member-only events.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%# ══════════════════════════════════════════════════════════════
+     Section 4 — Photo Gallery Preview
+     ══════════════════════════════════════════════════════════════ %>
+<section id="gallery" class="py-16 sm:py-20 bg-offwhite">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <%# Section heading %>
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-bold text-charcoal">Gallery</h2>
+      <div class="mt-3 mx-auto w-16 h-1 rounded-full bg-sand-400"></div>
+    </div>
+
+    <%# Gallery grid %>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+      <%# 6 gradient placeholders %>
+      <% gallery_gradients = [
+        "from-ocean-600 to-ocean-800",
+        "from-sand-400 to-sand-700",
+        "from-coral-400 to-coral-600",
+        "from-navy-700 to-ocean-700",
+        "from-ocean-500 to-sand-500",
+        "from-coral-300 to-sand-400",
+      ] %>
+      <% gallery_gradients.each do |gradient| %>
+        <div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer bg-gradient-to-br <%= gradient %>">
+          <%# Hover overlay %>
+          <div class="absolute inset-0 bg-navy-950/0 group-hover:bg-navy-950/40 transition-colors flex items-center justify-center">
+            <svg class="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
+            </svg>
+          </div>
+        </div>
+      <% end %>
+
+      <%# "View Full Gallery" card %>
+      <a href="#" class="aspect-square rounded-xl border-2 border-dashed border-gray-300 hover:border-sand-400 transition-colors flex flex-col items-center justify-center text-gray-400 hover:text-sand-500 group">
+        <svg class="h-10 w-10 mb-2 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" />
+        </svg>
+        <span class="text-sm font-semibold">View Full Gallery</span>
+      </a>
+    </div>
+  </div>
+</section>
