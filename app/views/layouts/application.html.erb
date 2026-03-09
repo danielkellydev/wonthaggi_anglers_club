@@ -19,40 +19,45 @@
   </head>
 
   <body class="bg-offwhite text-charcoal min-h-screen flex flex-col">
-    <%# ── Sticky Navigation ── %>
-    <nav class="sticky top-0 z-50 bg-gradient-to-r from-navy-900 to-ocean-800 text-white shadow-lg" data-controller="navbar">
+    <% is_homepage = controller_name == "pages" && action_name == "home" %>
+
+    <%# ── Smart Navbar ── %>
+    <nav class="fixed top-0 left-0 right-0 z-50 text-white transition-all duration-300 <%= 'bg-navy-950/95 backdrop-blur-sm' unless is_homepage %>"
+         data-controller="navbar"
+         data-navbar-homepage-value="<%= is_homepage %>">
+
+      <%# Large hero logo (homepage only, pinned top-left of viewport) %>
+      <% if is_homepage %>
+        <a href="/" class="fixed top-6 left-6 sm:top-8 sm:left-8 z-10 transition-all duration-300" data-navbar-target="heroLogo">
+          <img src="/WAClogo-white.png" alt="Wonthaggi Angling Club" class="h-24 w-24 sm:h-32 sm:w-32 lg:h-36 lg:w-36 drop-shadow-lg">
+        </a>
+      <% end %>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
-          <%# Club name %>
-          <a href="/" class="text-xl font-bold tracking-wide hover:text-sand-400 transition-colors">
-            Wonthaggi Angling Club
+        <div class="flex items-center justify-between h-20 lg:h-24">
+          <%# Logo + club name (visible when scrolled / non-homepage) %>
+          <a href="/" class="flex items-center gap-4 group transition-all duration-300 <%= is_homepage ? 'opacity-0 pointer-events-none' : '' %>" data-navbar-target="compactLogo">
+            <img src="/WAClogo-white.png" alt="" class="h-12 w-12 drop-shadow-lg" aria-hidden="true">
+            <span class="text-xl font-bold tracking-wide group-hover:text-sand-400 transition-colors hidden sm:inline">Wonthaggi Angling Club</span>
           </a>
 
           <%# Desktop nav links %>
-          <div class="hidden md:flex items-center space-x-1">
-            <%= link_to "Home", root_path, class: "px-3 py-2 rounded-md text-sm font-medium hover:bg-white/10 transition-colors" %>
-            <%= link_to "News", posts_path, class: "px-3 py-2 rounded-md text-sm font-medium hover:bg-white/10 transition-colors" %>
-            <%= link_to "Events", events_path, class: "px-3 py-2 rounded-md text-sm font-medium hover:bg-white/10 transition-colors" %>
-            <%= link_to "Gallery", gallery_path, class: "px-3 py-2 rounded-md text-sm font-medium hover:bg-white/10 transition-colors" %>
-            <a href="#membership" class="ml-4 inline-flex items-center px-4 py-2 rounded-md text-sm font-semibold bg-sand-400 text-navy-950 hover:bg-sand-300 transition-colors shadow-md">
-              Join Us
-            </a>
+          <div class="hidden md:flex items-center gap-8">
+            <%= link_to "News", posts_path, class: "text-base lg:text-lg font-bold uppercase tracking-widest text-white/70 hover:text-white hover:scale-110 transition-all duration-200 origin-center" %>
+            <%= link_to "Events", events_path, class: "text-base lg:text-lg font-bold uppercase tracking-widest text-white/70 hover:text-white hover:scale-110 transition-all duration-200 origin-center" %>
+            <%= link_to "Gallery", gallery_path, class: "text-base lg:text-lg font-bold uppercase tracking-widest text-white/70 hover:text-white hover:scale-110 transition-all duration-200 origin-center" %>
+            <a href="/#membership" class="text-base lg:text-lg font-bold uppercase tracking-widest text-sand-400 hover:text-sand-300 hover:scale-110 transition-all duration-200 origin-center">Join Us</a>
           </div>
 
-          <%# Mobile hamburger button %>
+          <%# Mobile hamburger %>
           <button type="button"
                   class="md:hidden inline-flex items-center justify-center p-2 rounded-md hover:bg-white/10 transition-colors min-h-[48px] min-w-[48px]"
-                  data-navbar-toggle
                   data-action="click->navbar#toggle"
                   aria-controls="mobile-menu"
-                  aria-expanded="false"
                   aria-label="Toggle navigation menu">
-            <%# Hamburger icon %>
-            <svg data-navbar-target="openIcon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <svg data-navbar-target="openIcon" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
-            <%# Close (X) icon %>
-            <svg data-navbar-target="closeIcon" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <svg data-navbar-target="closeIcon" class="hidden h-7 w-7" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
@@ -60,18 +65,20 @@
       </div>
 
       <%# Mobile menu dropdown %>
-      <div id="mobile-menu" class="hidden md:hidden border-t border-white/10" data-navbar-target="menu">
-        <div class="px-4 pt-2 pb-4 space-y-1">
-          <%= link_to "Home", root_path, data: { action: "click->navbar#closeMenu" }, class: "block px-3 py-3 rounded-md text-base font-medium hover:bg-white/10 transition-colors min-h-[48px] flex items-center" %>
-          <%= link_to "News", posts_path, data: { action: "click->navbar#closeMenu" }, class: "block px-3 py-3 rounded-md text-base font-medium hover:bg-white/10 transition-colors min-h-[48px] flex items-center" %>
-          <%= link_to "Events", events_path, data: { action: "click->navbar#closeMenu" }, class: "block px-3 py-3 rounded-md text-base font-medium hover:bg-white/10 transition-colors min-h-[48px] flex items-center" %>
-          <%= link_to "Gallery", gallery_path, data: { action: "click->navbar#closeMenu" }, class: "block px-3 py-3 rounded-md text-base font-medium hover:bg-white/10 transition-colors min-h-[48px] flex items-center" %>
-          <a href="#membership" data-action="click->navbar#closeMenu" class="block mt-2 px-3 py-3 rounded-md text-base font-semibold bg-sand-400 text-navy-950 hover:bg-sand-300 transition-colors text-center min-h-[48px] flex items-center justify-center">
-            Join Us
-          </a>
+      <div id="mobile-menu" class="hidden md:hidden border-t border-white/10 bg-navy-950/95 backdrop-blur-sm" data-navbar-target="menu">
+        <div class="px-6 pt-4 pb-6 space-y-1">
+          <%= link_to "News", posts_path, data: { action: "click->navbar#closeMenu" }, class: "block px-3 py-3 text-lg font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors" %>
+          <%= link_to "Events", events_path, data: { action: "click->navbar#closeMenu" }, class: "block px-3 py-3 text-lg font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors" %>
+          <%= link_to "Gallery", gallery_path, data: { action: "click->navbar#closeMenu" }, class: "block px-3 py-3 text-lg font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors" %>
+          <a href="/#membership" data-action="click->navbar#closeMenu" class="block px-3 py-3 text-lg font-bold uppercase tracking-widest text-sand-400 hover:text-sand-300 transition-colors">Join Us</a>
         </div>
       </div>
     </nav>
+
+    <%# Spacer — not needed on homepage since hero goes under the navbar %>
+    <% unless is_homepage %>
+      <div class="h-20 lg:h-24"></div>
+    <% end %>
 
     <main class="flex-1">
       <% if notice = flash[:notice] %>
