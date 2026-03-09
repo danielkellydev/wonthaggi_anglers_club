@@ -1,0 +1,58 @@
+<%= form_with model: [:admin, event], class: "space-y-6" do |form| %>
+  <% if event.errors.any? %>
+    <div class="bg-red-50 rounded-lg p-4">
+      <p class="text-red-600 font-medium text-sm mb-2"><%= pluralize(event.errors.count, "error") %> prevented this event from being saved:</p>
+      <ul class="list-disc list-inside text-sm text-red-500">
+        <% event.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, class: "block text-sm font-medium text-charcoal mb-1" %>
+    <%= form.text_field :title, class: "block w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-ocean-600 focus:border-transparent" %>
+  </div>
+
+  <div>
+    <%= form.label :description, class: "block text-sm font-medium text-charcoal mb-1" %>
+    <%= form.rich_text_area :description, class: "min-h-[200px]" %>
+  </div>
+
+  <div>
+    <%= form.label :location, class: "block text-sm font-medium text-charcoal mb-1" %>
+    <%= form.text_field :location, placeholder: "e.g. Inverloch Jetty", class: "block w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-ocean-600 focus:border-transparent" %>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div>
+      <%= form.label :starts_at, "Start Date/Time", class: "block text-sm font-medium text-charcoal mb-1" %>
+      <%= form.datetime_local_field :starts_at, class: "block w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-ocean-600 focus:border-transparent" %>
+    </div>
+    <div>
+      <%= form.label :ends_at, "End Date/Time (optional)", class: "block text-sm font-medium text-charcoal mb-1" %>
+      <%= form.datetime_local_field :ends_at, class: "block w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-ocean-600 focus:border-transparent" %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.label :featured_image, class: "block text-sm font-medium text-charcoal mb-1" %>
+    <% if event.featured_image.attached? %>
+      <div class="mb-2">
+        <%= image_tag event.featured_image.variant(resize_to_fill: [200, 133]), class: "rounded-lg" %>
+      </div>
+    <% end %>
+    <%= form.file_field :featured_image, accept: "image/jpeg,image/png,image/webp", class: "block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-ocean-50 file:text-ocean-700 hover:file:bg-ocean-100" %>
+  </div>
+
+  <div class="flex items-center gap-2">
+    <%= form.check_box :published, class: "rounded border-gray-300 text-ocean-600 focus:ring-ocean-500" %>
+    <%= form.label :published, "Published", class: "text-sm font-medium text-charcoal" %>
+  </div>
+
+  <div class="flex items-center gap-3">
+    <%= form.submit class: "inline-flex items-center px-6 py-2.5 rounded-lg bg-ocean-700 text-white font-semibold hover:bg-ocean-600 transition-colors cursor-pointer" %>
+    <%= link_to "Cancel", admin_events_path, class: "text-sm text-gray-500 hover:text-gray-700" %>
+  </div>
+<% end %>

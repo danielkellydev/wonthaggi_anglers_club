@@ -1,0 +1,28 @@
+<section class="py-16 sm:py-20 bg-offwhite">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h1 class="text-3xl sm:text-4xl font-bold text-charcoal">Events</h1>
+      <div class="mt-3 mx-auto w-16 h-1 rounded-full bg-sand-400"></div>
+    </div>
+
+    <% if @upcoming_events.any? %>
+      <h2 class="text-xl font-bold text-charcoal mb-6">Upcoming Events</h2>
+      <div class="space-y-6 mb-12">
+        <% @upcoming_events.each do |event| %>
+          <%= render "events/card", event: event %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if @past_events.any? %>
+      <h2 class="text-xl font-bold text-gray-400 mb-6">Past Events</h2>
+      <div class="space-y-6 opacity-75">
+        <% @past_events.each do |event| %>
+          <%= render "events/card", event: event %>
+        <% end %>
+      </div>
+    <% elsif @upcoming_events.empty? %>
+      <p class="text-center text-gray-500">No events yet. Check back soon!</p>
+    <% end %>
+  </div>
+</section>

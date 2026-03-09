@@ -1,0 +1,25 @@
+<section class="py-16 sm:py-20 bg-offwhite">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <% if @post.featured_image.attached? %>
+      <%= image_tag @post.featured_image.variant(resize_to_limit: [1200, 800]), class: "w-full rounded-xl shadow-md mb-8" %>
+    <% end %>
+
+    <div class="flex items-center gap-3 mb-4">
+      <% badge = { "news" => "bg-ocean-100 text-ocean-800", "report" => "bg-sand-100 text-sand-800", "announcement" => "bg-coral-50 text-coral-700" }[@post.category] %>
+      <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold <%= badge %>"><%= @post.category.capitalize %></span>
+      <% if @post.published_at %>
+        <time class="text-sm text-gray-500"><%= @post.published_at.strftime("%-d %b %Y") %></time>
+      <% end %>
+    </div>
+
+    <h1 class="text-3xl sm:text-4xl font-bold text-charcoal mb-8"><%= @post.title %></h1>
+
+    <div class="prose prose-lg max-w-none text-charcoal">
+      <%= @post.body %>
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-gray-200">
+      <%= link_to "&larr; Back to News".html_safe, posts_path, class: "text-sm font-semibold text-ocean-700 hover:text-ocean-600 transition-colors" %>
+    </div>
+  </div>
+</section>

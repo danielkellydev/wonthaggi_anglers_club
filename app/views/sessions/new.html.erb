@@ -1,0 +1,32 @@
+<div class="min-h-[60vh] flex items-center justify-center py-16 px-4 bg-offwhite">
+  <div class="w-full max-w-md">
+    <div class="bg-white rounded-xl shadow-md p-8">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl font-bold text-charcoal">Admin Login</h1>
+        <div class="mt-2 mx-auto w-12 h-1 rounded-full bg-sand-400"></div>
+      </div>
+
+      <% if alert = flash[:alert] %>
+        <p class="py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg text-sm"><%= alert %></p>
+      <% end %>
+
+      <%= form_with url: session_url, class: "space-y-5" do |form| %>
+        <div>
+          <label class="block text-sm font-medium text-charcoal mb-1">Email</label>
+          <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username",
+              class: "block w-full rounded-lg border border-gray-300 px-3 py-2.5 text-charcoal focus:outline-none focus:ring-2 focus:ring-ocean-600 focus:border-transparent" %>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-charcoal mb-1">Password</label>
+          <%= form.password_field :password, required: true, autocomplete: "current-password", maxlength: 72,
+              class: "block w-full rounded-lg border border-gray-300 px-3 py-2.5 text-charcoal focus:outline-none focus:ring-2 focus:ring-ocean-600 focus:border-transparent" %>
+        </div>
+
+        <div>
+          <%= form.submit "Sign In", class: "w-full rounded-lg px-4 py-2.5 bg-ocean-700 hover:bg-ocean-600 text-white font-semibold transition-colors cursor-pointer" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

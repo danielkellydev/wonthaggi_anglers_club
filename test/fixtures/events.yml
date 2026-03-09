@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  slug: MyString
+  location: MyString
+  starts_at: 2026-03-09 14:17:51
+  ends_at: 2026-03-09 14:17:51
+  published: false
+
+two:
+  title: MyString
+  slug: MyString
+  location: MyString
+  starts_at: 2026-03-09 14:17:51
+  ends_at: 2026-03-09 14:17:51
+  published: false

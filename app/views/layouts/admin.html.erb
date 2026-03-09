@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin — Wonthaggi Angling Club</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="bg-gray-50 text-charcoal min-h-screen flex flex-col">
+    <%# Top bar %>
+    <nav class="bg-navy-900 text-white shadow-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-14">
+          <span class="font-bold text-lg">Wonthaggi AC Admin</span>
+          <div class="flex items-center gap-4 text-sm">
+            <%= link_to "View Site", root_path, class: "hover:text-sand-400 transition-colors" %>
+            <%= button_to "Log Out", session_path, method: :delete, class: "hover:text-sand-400 transition-colors cursor-pointer" %>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <%# Sub nav %>
+    <div class="bg-white border-b border-gray-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center gap-1 h-12 text-sm overflow-x-auto">
+          <%= link_to "Dashboard", admin_root_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path == admin_root_path ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
+          <%= link_to "Posts", admin_posts_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path.start_with?(admin_posts_path) ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
+          <%= link_to "Events", admin_events_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path.start_with?(admin_events_path) ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
+          <%= link_to "Gallery", admin_gallery_images_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path.start_with?(admin_gallery_images_path) ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
+        </div>
+      </div>
+    </div>
+
+    <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+      <% if notice = flash[:notice] %>
+        <p class="py-2 px-4 bg-green-50 text-green-700 rounded-lg mb-6 text-sm font-medium"><%= notice %></p>
+      <% end %>
+      <% if alert = flash[:alert] %>
+        <p class="py-2 px-4 bg-red-50 text-red-600 rounded-lg mb-6 text-sm font-medium"><%= alert %></p>
+      <% end %>
+
+      <%= yield %>
+    </main>
+  </body>
+</html>

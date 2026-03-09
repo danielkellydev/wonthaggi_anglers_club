@@ -1,0 +1,70 @@
+<h1 class="text-2xl font-bold text-charcoal mb-6">Dashboard</h1>
+
+<%# Stat cards %>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
+  <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+    <p class="text-sm text-gray-500 mb-1">Posts</p>
+    <p class="text-3xl font-bold text-charcoal"><%= @posts_count %></p>
+  </div>
+  <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+    <p class="text-sm text-gray-500 mb-1">Events</p>
+    <p class="text-3xl font-bold text-charcoal"><%= @events_count %></p>
+  </div>
+  <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+    <p class="text-sm text-gray-500 mb-1">Gallery Images</p>
+    <p class="text-3xl font-bold text-charcoal"><%= @gallery_images_count %></p>
+  </div>
+</div>
+
+<%# Quick actions %>
+<div class="flex flex-wrap gap-3 mb-10">
+  <%= link_to "New Post", new_admin_post_path, class: "inline-flex items-center px-4 py-2 rounded-lg bg-ocean-700 text-white text-sm font-semibold hover:bg-ocean-600 transition-colors" %>
+  <%= link_to "New Event", new_admin_event_path, class: "inline-flex items-center px-4 py-2 rounded-lg bg-ocean-700 text-white text-sm font-semibold hover:bg-ocean-600 transition-colors" %>
+  <%= link_to "Add Image", new_admin_gallery_image_path, class: "inline-flex items-center px-4 py-2 rounded-lg bg-ocean-700 text-white text-sm font-semibold hover:bg-ocean-600 transition-colors" %>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+  <%# Recent posts %>
+  <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+    <div class="px-6 py-4 border-b border-gray-100">
+      <h2 class="font-bold text-charcoal">Recent Posts</h2>
+    </div>
+    <% if @recent_posts.any? %>
+      <ul class="divide-y divide-gray-100">
+        <% @recent_posts.each do |post| %>
+          <li class="px-6 py-3 flex items-center justify-between">
+            <div>
+              <p class="font-medium text-sm"><%= post.title %></p>
+              <p class="text-xs text-gray-500"><%= post.published? ? "Published" : "Draft" %> · <%= post.category.capitalize %></p>
+            </div>
+            <%= link_to "Edit", edit_admin_post_path(post), class: "text-xs text-ocean-700 hover:text-ocean-600 font-medium" %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="px-6 py-4 text-sm text-gray-500">No posts yet.</p>
+    <% end %>
+  </div>
+
+  <%# Upcoming events %>
+  <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+    <div class="px-6 py-4 border-b border-gray-100">
+      <h2 class="font-bold text-charcoal">Upcoming Events</h2>
+    </div>
+    <% if @upcoming_events.any? %>
+      <ul class="divide-y divide-gray-100">
+        <% @upcoming_events.each do |event| %>
+          <li class="px-6 py-3 flex items-center justify-between">
+            <div>
+              <p class="font-medium text-sm"><%= event.title %></p>
+              <p class="text-xs text-gray-500"><%= event.starts_at.strftime("%d %b %Y") %> · <%= event.published? ? "Published" : "Draft" %></p>
+            </div>
+            <%= link_to "Edit", edit_admin_event_path(event), class: "text-xs text-ocean-700 hover:text-ocean-600 font-medium" %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="px-6 py-4 text-sm text-gray-500">No upcoming events.</p>
+    <% end %>
+  </div>
+</div>

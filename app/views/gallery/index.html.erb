@@ -1,0 +1,27 @@
+<section class="py-16 sm:py-20 bg-offwhite">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h1 class="text-3xl sm:text-4xl font-bold text-charcoal">Gallery</h1>
+      <div class="mt-3 mx-auto w-16 h-1 rounded-full bg-sand-400"></div>
+    </div>
+
+    <% if @gallery_images.any? %>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        <% @gallery_images.each do |gallery_image| %>
+          <% if gallery_image.image.attached? %>
+            <div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer">
+              <%= image_tag gallery_image.image.variant(resize_to_fill: [400, 400]), class: "w-full h-full object-cover" %>
+              <% if gallery_image.caption.present? %>
+                <div class="absolute inset-0 bg-navy-950/0 group-hover:bg-navy-950/50 transition-colors flex items-end">
+                  <p class="text-white text-sm p-3 opacity-0 group-hover:opacity-100 transition-opacity"><%= gallery_image.caption %></p>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-center text-gray-500">No photos yet. Check back soon!</p>
+    <% end %>
+  </div>
+</section>

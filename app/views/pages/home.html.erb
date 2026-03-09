@@ -27,9 +27,7 @@
       <a href="#membership" class="inline-flex items-center px-8 py-3 rounded-lg text-lg font-semibold bg-sand-400 text-navy-950 hover:bg-sand-300 transition-colors shadow-lg hover:shadow-xl">
         Join Us Today
       </a>
-      <a href="#news" class="inline-flex items-center px-8 py-3 rounded-lg text-lg font-semibold border-2 border-white/30 text-white hover:bg-white/10 transition-colors">
-        Latest News
-      </a>
+      <%= link_to "Latest News", posts_path, class: "inline-flex items-center px-8 py-3 rounded-lg text-lg font-semibold border-2 border-white/30 text-white hover:bg-white/10 transition-colors" %>
     </div>
   </div>
 
@@ -48,79 +46,48 @@
       <div class="mt-3 mx-auto w-16 h-1 rounded-full bg-sand-400"></div>
     </div>
 
-    <%# News cards %>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      <%# Card 1 — Event %>
-      <article class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden group">
-        <div class="h-48 bg-gradient-to-br from-ocean-600 to-ocean-800 relative">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-        </div>
-        <div class="p-6">
-          <div class="flex items-center gap-3 mb-3">
-            <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-ocean-100 text-ocean-800">Event</span>
-            <time class="text-sm text-gray-500">28 Feb 2026</time>
-          </div>
-          <h3 class="text-lg font-bold text-charcoal mb-2 group-hover:text-ocean-700 transition-colors">
-            Summer Fishing Competition
-          </h3>
-          <p class="text-gray-600 text-sm leading-relaxed mb-4">
-            Our annual summer comp is back! Head down to Inverloch jetty for a day of friendly competition and great prizes.
-          </p>
-          <a href="#" class="text-sm font-semibold text-ocean-700 hover:text-ocean-600 transition-colors">
-            Read More &rarr;
-          </a>
-        </div>
-      </article>
+    <% if @recent_posts.any? %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <% @recent_posts.each do |post| %>
+          <%= render "posts/card", post: post %>
+        <% end %>
+      </div>
 
-      <%# Card 2 — Report %>
-      <article class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden group">
-        <div class="h-48 bg-gradient-to-br from-sand-400 to-sand-600 relative">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-        </div>
-        <div class="p-6">
-          <div class="flex items-center gap-3 mb-3">
-            <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sand-100 text-sand-800">Report</span>
-            <time class="text-sm text-gray-500">20 Feb 2026</time>
-          </div>
-          <h3 class="text-lg font-bold text-charcoal mb-2 group-hover:text-ocean-700 transition-colors">
-            February Fishing Report
-          </h3>
-          <p class="text-gray-600 text-sm leading-relaxed mb-4">
-            Great catches reported this month across the Bass Coast. Flathead and whiting are firing at Cape Paterson.
-          </p>
-          <a href="#" class="text-sm font-semibold text-ocean-700 hover:text-ocean-600 transition-colors">
-            Read More &rarr;
-          </a>
-        </div>
-      </article>
-
-      <%# Card 3 — Announcement %>
-      <article class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden group">
-        <div class="h-48 bg-gradient-to-br from-coral-400 to-coral-600 relative">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-        </div>
-        <div class="p-6">
-          <div class="flex items-center gap-3 mb-3">
-            <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-coral-50 text-coral-700">Announcement</span>
-            <time class="text-sm text-gray-500">12 Feb 2026</time>
-          </div>
-          <h3 class="text-lg font-bold text-charcoal mb-2 group-hover:text-ocean-700 transition-colors">
-            New Clubhouse Hours
-          </h3>
-          <p class="text-gray-600 text-sm leading-relaxed mb-4">
-            We've extended our opening hours on weekends. Drop in Saturday or Sunday for a yarn and check out the latest gear.
-          </p>
-          <a href="#" class="text-sm font-semibold text-ocean-700 hover:text-ocean-600 transition-colors">
-            Read More &rarr;
-          </a>
-        </div>
-      </article>
-    </div>
+      <div class="text-center mt-10">
+        <%= link_to "View All News →", posts_path, class: "text-sm font-semibold text-ocean-700 hover:text-ocean-600 transition-colors" %>
+      </div>
+    <% else %>
+      <p class="text-center text-gray-500">No news yet. Check back soon!</p>
+    <% end %>
   </div>
 </section>
 
 <%# ══════════════════════════════════════════════════════════════
-     Section 3 — Membership CTA
+     Section 3 — Upcoming Events
+     ══════════════════════════════════════════════════════════════ %>
+<% if @upcoming_events.any? %>
+  <section class="py-16 sm:py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold text-charcoal">Upcoming Events</h2>
+        <div class="mt-3 mx-auto w-16 h-1 rounded-full bg-sand-400"></div>
+      </div>
+
+      <div class="space-y-6">
+        <% @upcoming_events.each do |event| %>
+          <%= render "events/card", event: event %>
+        <% end %>
+      </div>
+
+      <div class="text-center mt-10">
+        <%= link_to "View All Events →", events_path, class: "text-sm font-semibold text-ocean-700 hover:text-ocean-600 transition-colors" %>
+      </div>
+    </div>
+  </section>
+<% end %>
+
+<%# ══════════════════════════════════════════════════════════════
+     Section 4 — Membership CTA
      ══════════════════════════════════════════════════════════════ %>
 <section id="membership" class="py-16 sm:py-20 bg-gradient-to-br from-navy-900 via-navy-800 to-ocean-800 text-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -188,7 +155,7 @@
 </section>
 
 <%# ══════════════════════════════════════════════════════════════
-     Section 4 — Photo Gallery Preview
+     Section 5 — Photo Gallery Preview
      ══════════════════════════════════════════════════════════════ %>
 <section id="gallery" class="py-16 sm:py-20 bg-offwhite">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -200,33 +167,46 @@
 
     <%# Gallery grid %>
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-      <%# 6 gradient placeholders %>
-      <% gallery_gradients = [
-        "from-ocean-600 to-ocean-800",
-        "from-sand-400 to-sand-700",
-        "from-coral-400 to-coral-600",
-        "from-navy-700 to-ocean-700",
-        "from-ocean-500 to-sand-500",
-        "from-coral-300 to-sand-400",
-      ] %>
-      <% gallery_gradients.each do |gradient| %>
-        <div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer bg-gradient-to-br <%= gradient %>">
-          <%# Hover overlay %>
-          <div class="absolute inset-0 bg-navy-950/0 group-hover:bg-navy-950/40 transition-colors flex items-center justify-center">
-            <svg class="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-            </svg>
+      <% if @gallery_images.any? %>
+        <% @gallery_images.each do |gallery_image| %>
+          <% if gallery_image.image.attached? %>
+            <div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer">
+              <%= image_tag gallery_image.image.variant(resize_to_fill: [400, 400]), class: "w-full h-full object-cover" %>
+              <div class="absolute inset-0 bg-navy-950/0 group-hover:bg-navy-950/40 transition-colors flex items-center justify-center">
+                <svg class="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
+                </svg>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% else %>
+        <% gallery_gradients = [
+          "from-ocean-600 to-ocean-800",
+          "from-sand-400 to-sand-700",
+          "from-coral-400 to-coral-600",
+          "from-navy-700 to-ocean-700",
+          "from-ocean-500 to-sand-500",
+          "from-coral-300 to-sand-400",
+        ] %>
+        <% gallery_gradients.each do |gradient| %>
+          <div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer bg-gradient-to-br <%= gradient %>">
+            <div class="absolute inset-0 bg-navy-950/0 group-hover:bg-navy-950/40 transition-colors flex items-center justify-center">
+              <svg class="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
+              </svg>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
 
       <%# "View Full Gallery" card %>
-      <a href="#" class="aspect-square rounded-xl border-2 border-dashed border-gray-300 hover:border-sand-400 transition-colors flex flex-col items-center justify-center text-gray-400 hover:text-sand-500 group">
+      <%= link_to gallery_path, class: "aspect-square rounded-xl border-2 border-dashed border-gray-300 hover:border-sand-400 transition-colors flex flex-col items-center justify-center text-gray-400 hover:text-sand-500 group" do %>
         <svg class="h-10 w-10 mb-2 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" />
         </svg>
         <span class="text-sm font-semibold">View Full Gallery</span>
-      </a>
+      <% end %>
     </div>
   </div>
 </section>

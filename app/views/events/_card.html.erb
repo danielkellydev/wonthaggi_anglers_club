@@ -1,0 +1,27 @@
+<article class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden group">
+  <div class="flex flex-col sm:flex-row">
+    <%# Date badge %>
+    <div class="sm:w-28 shrink-0 bg-ocean-700 text-white flex sm:flex-col items-center justify-center p-4 sm:p-6 gap-2 sm:gap-0">
+      <span class="text-sm font-medium uppercase"><%= event.starts_at.strftime("%b") %></span>
+      <span class="text-3xl sm:text-4xl font-bold leading-none"><%= event.starts_at.strftime("%-d") %></span>
+      <span class="text-sm"><%= event.starts_at.strftime("%Y") %></span>
+    </div>
+    <div class="p-6 flex-1">
+      <h3 class="text-lg font-bold text-charcoal mb-2 group-hover:text-ocean-700 transition-colors">
+        <%= event.title %>
+      </h3>
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-500 mb-3">
+        <span><%= event.starts_at.strftime("%l:%M %p").strip %></span>
+        <% if event.location.present? %>
+          <span><%= event.location %></span>
+        <% end %>
+      </div>
+      <% if event.description.present? %>
+        <p class="text-gray-600 text-sm leading-relaxed mb-4"><%= truncate(event.description.to_plain_text, length: 150) %></p>
+      <% end %>
+      <%= link_to event_path(event), class: "text-sm font-semibold text-ocean-700 hover:text-ocean-600 transition-colors" do %>
+        Details &rarr;
+      <% end %>
+    </div>
+  </div>
+</article>
