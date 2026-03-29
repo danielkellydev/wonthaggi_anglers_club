@@ -1,7 +1,7 @@
 <h1 class="text-2xl font-bold text-charcoal mb-6">Dashboard</h1>
 
 <%# Stat cards %>
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
+<div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-6 mb-10">
   <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
     <p class="text-sm text-gray-500 mb-1">Posts</p>
     <p class="text-3xl font-bold text-charcoal"><%= @posts_count %></p>
@@ -14,6 +14,22 @@
     <p class="text-sm text-gray-500 mb-1">Gallery Images</p>
     <p class="text-3xl font-bold text-charcoal"><%= @gallery_images_count %></p>
   </div>
+  <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+    <p class="text-sm text-gray-500 mb-1">Fish Species</p>
+    <p class="text-3xl font-bold text-charcoal"><%= @fish_points_count %></p>
+  </div>
+  <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+    <p class="text-sm text-gray-500 mb-1">Fee Categories</p>
+    <p class="text-3xl font-bold text-charcoal"><%= @membership_fees_count %></p>
+  </div>
+  <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+    <p class="text-sm text-gray-500 mb-1">Committee</p>
+    <p class="text-3xl font-bold text-charcoal"><%= @committee_members_count %></p>
+  </div>
+  <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+    <p class="text-sm text-gray-500 mb-1">Sponsors</p>
+    <p class="text-3xl font-bold text-charcoal"><%= @sponsors_count %></p>
+  </div>
 </div>
 
 <%# Quick actions %>
@@ -21,6 +37,10 @@
   <%= link_to "New Post", new_admin_post_path, class: "inline-flex items-center px-4 py-2 rounded-lg bg-ocean-700 text-white text-sm font-semibold hover:bg-ocean-600 transition-colors" %>
   <%= link_to "New Event", new_admin_event_path, class: "inline-flex items-center px-4 py-2 rounded-lg bg-ocean-700 text-white text-sm font-semibold hover:bg-ocean-600 transition-colors" %>
   <%= link_to "Add Image", new_admin_gallery_image_path, class: "inline-flex items-center px-4 py-2 rounded-lg bg-ocean-700 text-white text-sm font-semibold hover:bg-ocean-600 transition-colors" %>
+  <%= link_to "New Fish Point", new_admin_fish_point_path, class: "inline-flex items-center px-4 py-2 rounded-lg bg-ocean-700 text-white text-sm font-semibold hover:bg-ocean-600 transition-colors" %>
+  <%= link_to "New Fee", new_admin_membership_fee_path, class: "inline-flex items-center px-4 py-2 rounded-lg bg-ocean-700 text-white text-sm font-semibold hover:bg-ocean-600 transition-colors" %>
+  <%= link_to "New Committee Member", new_admin_committee_member_path, class: "inline-flex items-center px-4 py-2 rounded-lg bg-ocean-700 text-white text-sm font-semibold hover:bg-ocean-600 transition-colors" %>
+  <%= link_to "New Sponsor", new_admin_sponsor_path, class: "inline-flex items-center px-4 py-2 rounded-lg bg-ocean-700 text-white text-sm font-semibold hover:bg-ocean-600 transition-colors" %>
 </div>
 
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">

@@ -1,0 +1,37 @@
+<%= form_with model: [:admin, fish_point], class: "space-y-6" do |form| %>
+  <% if fish_point.errors.any? %>
+    <div class="bg-red-50 rounded-lg p-4">
+      <p class="text-red-600 font-medium text-sm mb-2"><%= pluralize(fish_point.errors.count, "error") %> prevented this fish point from being saved:</p>
+      <ul class="list-disc list-inside text-sm text-red-500">
+        <% fish_point.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, "Species name", class: "block text-sm font-medium text-charcoal mb-1" %>
+    <%= form.text_field :name, class: "block w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-ocean-600 focus:border-transparent" %>
+  </div>
+
+  <div>
+    <%= form.label :points, "Points (per 10g)", class: "block text-sm font-medium text-charcoal mb-1" %>
+    <%= form.number_field :points, class: "block w-32 rounded-lg border border-gray-300 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-ocean-600 focus:border-transparent" %>
+  </div>
+
+  <div>
+    <%= form.label :notes, "Notes (optional)", class: "block text-sm font-medium text-charcoal mb-1" %>
+    <%= form.text_field :notes, placeholder: "e.g. 365 Comp only", class: "block w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-ocean-600 focus:border-transparent" %>
+  </div>
+
+  <div>
+    <%= form.label :position, class: "block text-sm font-medium text-charcoal mb-1" %>
+    <%= form.number_field :position, class: "block w-32 rounded-lg border border-gray-300 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-ocean-600 focus:border-transparent" %>
+  </div>
+
+  <div class="flex items-center gap-3">
+    <%= form.submit class: "inline-flex items-center px-6 py-2.5 rounded-lg bg-ocean-700 text-white font-semibold hover:bg-ocean-600 transition-colors cursor-pointer" %>
+    <%= link_to "Cancel", admin_fish_points_path, class: "text-sm text-gray-500 hover:text-gray-700" %>
+  </div>
+<% end %>

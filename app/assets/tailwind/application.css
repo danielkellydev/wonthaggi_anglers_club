@@ -53,3 +53,12 @@
   --color-charcoal: #1e293b;
   --color-offwhite: #f8fafc;
 }
+
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-ticker {
+  animation: ticker-scroll 30s linear infinite;
+}

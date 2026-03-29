@@ -1,0 +1,37 @@
+<%= form_with model: [:admin, committee_member], class: "space-y-6" do |form| %>
+  <% if committee_member.errors.any? %>
+    <div class="bg-red-50 rounded-lg p-4">
+      <p class="text-red-600 font-medium text-sm mb-2"><%= pluralize(committee_member.errors.count, "error") %> prevented this member from being saved:</p>
+      <ul class="list-disc list-inside text-sm text-red-500">
+        <% committee_member.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :role, class: "block text-sm font-medium text-charcoal mb-1" %>
+    <%= form.text_field :role, placeholder: "e.g. President", class: "block w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-ocean-600 focus:border-transparent" %>
+  </div>
+
+  <div>
+    <%= form.label :name, class: "block text-sm font-medium text-charcoal mb-1" %>
+    <%= form.text_field :name, class: "block w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-ocean-600 focus:border-transparent" %>
+  </div>
+
+  <div>
+    <%= form.label :phone, "Phone (optional)", class: "block text-sm font-medium text-charcoal mb-1" %>
+    <%= form.text_field :phone, class: "block w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-ocean-600 focus:border-transparent" %>
+  </div>
+
+  <div>
+    <%= form.label :position, class: "block text-sm font-medium text-charcoal mb-1" %>
+    <%= form.number_field :position, class: "block w-32 rounded-lg border border-gray-300 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-ocean-600 focus:border-transparent" %>
+  </div>
+
+  <div class="flex items-center gap-3">
+    <%= form.submit class: "inline-flex items-center px-6 py-2.5 rounded-lg bg-ocean-700 text-white font-semibold hover:bg-ocean-600 transition-colors cursor-pointer" %>
+    <%= link_to "Cancel", admin_committee_members_path, class: "text-sm text-gray-500 hover:text-gray-700" %>
+  </div>
+<% end %>

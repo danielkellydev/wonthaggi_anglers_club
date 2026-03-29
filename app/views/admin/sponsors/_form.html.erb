@@ -1,0 +1,42 @@
+<%= form_with model: [:admin, sponsor], class: "space-y-6" do |form| %>
+  <% if sponsor.errors.any? %>
+    <div class="bg-red-50 rounded-lg p-4">
+      <p class="text-red-600 font-medium text-sm mb-2"><%= pluralize(sponsor.errors.count, "error") %> prevented this sponsor from being saved:</p>
+      <ul class="list-disc list-inside text-sm text-red-500">
+        <% sponsor.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, "Sponsor name", class: "block text-sm font-medium text-charcoal mb-1" %>
+    <%= form.text_field :name, class: "block w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-ocean-600 focus:border-transparent" %>
+  </div>
+
+  <div>
+    <%= form.label :logo, class: "block text-sm font-medium text-charcoal mb-1" %>
+    <% if sponsor.logo.attached? %>
+      <div class="mb-2">
+        <%= image_tag sponsor.logo.variant(resize_to_fit: [200, 100]), class: "rounded-lg" %>
+      </div>
+    <% end %>
+    <%= form.file_field :logo, accept: "image/jpeg,image/png,image/webp,image/svg+xml", class: "block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-ocean-50 file:text-ocean-700 hover:file:bg-ocean-100" %>
+  </div>
+
+  <div>
+    <%= form.label :website_url, "Website URL (optional)", class: "block text-sm font-medium text-charcoal mb-1" %>
+    <%= form.url_field :website_url, placeholder: "https://example.com", class: "block w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-ocean-600 focus:border-transparent" %>
+  </div>
+
+  <div>
+    <%= form.label :position, class: "block text-sm font-medium text-charcoal mb-1" %>
+    <%= form.number_field :position, class: "block w-32 rounded-lg border border-gray-300 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-ocean-600 focus:border-transparent" %>
+  </div>
+
+  <div class="flex items-center gap-3">
+    <%= form.submit class: "inline-flex items-center px-6 py-2.5 rounded-lg bg-ocean-700 text-white font-semibold hover:bg-ocean-600 transition-colors cursor-pointer" %>
+    <%= link_to "Cancel", admin_sponsors_path, class: "text-sm text-gray-500 hover:text-gray-700" %>
+  </div>
+<% end %>

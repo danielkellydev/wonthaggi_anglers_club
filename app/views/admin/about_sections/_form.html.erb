@@ -1,0 +1,37 @@
+<%= form_with model: [:admin, about_section], class: "space-y-6" do |form| %>
+  <% if about_section.errors.any? %>
+    <div class="bg-red-50 rounded-lg p-4">
+      <p class="text-red-600 font-medium text-sm mb-2"><%= pluralize(about_section.errors.count, "error") %> prevented this section from being saved:</p>
+      <ul class="list-disc list-inside text-sm text-red-500">
+        <% about_section.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, "Section title", class: "block text-sm font-medium text-charcoal mb-1" %>
+    <%= form.text_field :title, class: "block w-full rounded-lg border border-gray-300 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-ocean-600 focus:border-transparent" %>
+  </div>
+
+  <div>
+    <%= form.label :body, "Content", class: "block text-sm font-medium text-charcoal mb-1" %>
+    <%= form.rich_text_area :body, class: "min-h-[200px]" %>
+  </div>
+
+  <div>
+    <%= form.label :position, class: "block text-sm font-medium text-charcoal mb-1" %>
+    <%= form.number_field :position, class: "block w-32 rounded-lg border border-gray-300 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-ocean-600 focus:border-transparent" %>
+  </div>
+
+  <div class="flex items-center gap-2">
+    <%= form.check_box :published, class: "rounded border-gray-300 text-ocean-600 focus:ring-ocean-500" %>
+    <%= form.label :published, "Published", class: "text-sm font-medium text-charcoal" %>
+  </div>
+
+  <div class="flex items-center gap-3">
+    <%= form.submit class: "inline-flex items-center px-6 py-2.5 rounded-lg bg-ocean-700 text-white font-semibold hover:bg-ocean-600 transition-colors cursor-pointer" %>
+    <%= link_to "Cancel", admin_about_sections_path, class: "text-sm text-gray-500 hover:text-gray-700" %>
+  </div>
+<% end %>

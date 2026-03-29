@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_03_09_031754) do
+ActiveRecord::Schema[8.0].define(version: 2026_03_29_233448) do
+  create_table "about_sections", force: :cascade do |t|
+    t.string "title", null: false
+    t.integer "position", default: 0, null: false
+    t.boolean "published", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -49,6 +57,15 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_09_031754) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "committee_members", force: :cascade do |t|
+    t.string "role", null: false
+    t.string "name", null: false
+    t.string "phone"
+    t.integer "position", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "title", null: false
     t.string "slug", null: false
@@ -61,8 +78,26 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_09_031754) do
     t.index ["slug"], name: "index_events_on_slug", unique: true
   end
 
+  create_table "fish_points", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "points", null: false
+    t.string "notes"
+    t.integer "position", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "gallery_images", force: :cascade do |t|
     t.string "caption"
+    t.integer "position", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "membership_fees", force: :cascade do |t|
+    t.string "name", null: false
+    t.decimal "amount", precision: 8, scale: 2, null: false
+    t.string "description"
     t.integer "position", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -88,12 +123,22 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_09_031754) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
+  create_table "sponsors", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "website_url"
+    t.integer "position", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email_address", null: false
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username", default: "", null: false
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

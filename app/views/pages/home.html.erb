@@ -9,7 +9,7 @@
          autoplay muted loop playsinline preload="metadata"
          poster="/videos/hero-fishing-poster.jpg"
          aria-hidden="true">
-    <source src="/videos/hero-fishing.mp4" type="video/mp4">
+    <source src="/videos/AdobeStock_220777134.mp4" type="video/mp4">
   </video>
 
   <%# Dark overlay %>
@@ -24,9 +24,7 @@
       Bass Coast's home of fishing since the early days. Join our community of passionate anglers — from weekend warriors to seasoned pros.
     </p>
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a href="#membership" class="inline-flex items-center px-8 py-3 rounded-lg text-lg font-semibold bg-sand-400 text-navy-950 hover:bg-sand-300 transition-colors shadow-lg hover:shadow-xl">
-        Join Us Today
-      </a>
+      <%= link_to "Join Us Today", membership_path, class: "inline-flex items-center px-8 py-3 rounded-lg text-lg font-semibold bg-sand-400 text-navy-950 hover:bg-sand-300 transition-colors shadow-lg hover:shadow-xl" %>
       <%= link_to "Latest News", posts_path, class: "inline-flex items-center px-8 py-3 rounded-lg text-lg font-semibold border-2 border-white/30 text-white hover:bg-white/10 transition-colors" %>
     </div>
   </div>
@@ -99,9 +97,7 @@
         <p class="text-lg text-navy-200 leading-relaxed mb-6">
           Whether you're casting your first line or you've been fishing the Bass Coast for decades, there's a place for you at Wonthaggi Angling Club. Join a community that shares your passion.
         </p>
-        <a href="#" class="inline-flex items-center px-8 py-3 rounded-lg text-lg font-semibold bg-sand-400 text-navy-950 hover:bg-sand-300 transition-colors shadow-lg hover:shadow-xl">
-          Become a Member
-        </a>
+        <%= link_to "Become a Member", membership_path, class: "inline-flex items-center px-8 py-3 rounded-lg text-lg font-semibold bg-sand-400 text-navy-950 hover:bg-sand-300 transition-colors shadow-lg hover:shadow-xl" %>
       </div>
 
       <%# Right — benefit cards %>
@@ -210,3 +206,39 @@
     </div>
   </div>
 </section>
+
+<%# ══════════════════════════════════════════════════════════════
+     Section 6 — Sponsors Ticker
+     ══════════════════════════════════════════════════════════════ %>
+<% if @sponsors.any? %>
+  <section class="py-10 sm:py-12 bg-white border-t border-gray-100" data-controller="sponsor-ticker">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-center text-xs font-semibold uppercase tracking-widest text-gray-400 mb-6">Proudly Supported By</p>
+    </div>
+    <div class="overflow-hidden">
+      <div class="flex items-center gap-16 animate-ticker whitespace-nowrap" data-sponsor-ticker-target="track">
+        <% @sponsors.each do |sponsor| %>
+          <% if sponsor.logo.attached? %>
+            <% if sponsor.website_url.present? %>
+              <a href="<%= sponsor.website_url %>" target="_blank" rel="noopener noreferrer" class="shrink-0 opacity-60 hover:opacity-100 transition-opacity">
+                <%= image_tag sponsor.logo.variant(resize_to_fit: [160, 80]), alt: sponsor.name, class: "h-12 sm:h-16 w-auto object-contain" %>
+              </a>
+            <% else %>
+              <span class="shrink-0 opacity-60">
+                <%= image_tag sponsor.logo.variant(resize_to_fit: [160, 80]), alt: sponsor.name, class: "h-12 sm:h-16 w-auto object-contain" %>
+              </span>
+            <% end %>
+          <% else %>
+            <% if sponsor.website_url.present? %>
+              <a href="<%= sponsor.website_url %>" target="_blank" rel="noopener noreferrer" class="shrink-0 opacity-60 hover:opacity-100 transition-opacity text-sm font-bold text-gray-400 hover:text-charcoal">
+                <%= sponsor.name %>
+              </a>
+            <% else %>
+              <span class="shrink-0 text-sm font-bold text-gray-400"><%= sponsor.name %></span>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+<% end %>
