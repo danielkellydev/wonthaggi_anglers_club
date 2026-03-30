@@ -30,7 +30,7 @@
      Section 2 — Committee
      ══════════════════════════════════════════════════════════════ %>
 <% if @committee_members.any? %>
-  <section class="py-16 sm:py-20 bg-white">
+  <section id="committee" class="py-16 sm:py-20 bg-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="text-3xl sm:text-4xl font-bold text-charcoal">Committee</h2>
@@ -45,6 +45,11 @@
             <% if member.phone.present? %>
               <p class="mt-2 text-sm text-gray-600">
                 <a href="tel:<%= member.phone %>" class="hover:text-ocean-700 transition-colors"><%= member.phone %></a>
+              </p>
+            <% end %>
+            <% if member.email.present? %>
+              <p class="mt-1 text-sm text-gray-600">
+                <a href="mailto:<%= member.email %>" class="hover:text-ocean-700 transition-colors"><%= member.email %></a>
               </p>
             <% end %>
           </div>
@@ -64,7 +69,7 @@
     <p class="text-lg text-navy-200 leading-relaxed mb-8 max-w-xl mx-auto">
       Whether you're casting your first line or you've been fishing the Bass Coast for decades, there's a place for you at Wonthaggi Angling Club.
     </p>
-    <a href="mailto:info@wonthaggiangling.com.au" class="inline-flex items-center px-8 py-3 rounded-lg text-lg font-semibold bg-sand-400 text-navy-950 hover:bg-sand-300 transition-colors shadow-lg hover:shadow-xl">
+    <a href="#committee" class="inline-flex items-center px-8 py-3 rounded-lg text-lg font-semibold bg-sand-400 text-navy-950 hover:bg-sand-300 transition-colors shadow-lg hover:shadow-xl">
       Contact Us to Join
     </a>
   </div>

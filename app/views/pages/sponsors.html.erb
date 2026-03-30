@@ -40,8 +40,6 @@
     <p class="text-lg text-navy-200 leading-relaxed mb-8 max-w-xl mx-auto">
       Interested in supporting the Wonthaggi Angling Club? We'd love to hear from you. Your logo will be featured on our website and at club events.
     </p>
-    <a href="mailto:info@wonthaggiangling.com.au" class="inline-flex items-center px-8 py-3 rounded-lg text-lg font-semibold bg-sand-400 text-navy-950 hover:bg-sand-300 transition-colors shadow-lg hover:shadow-xl">
-      Get in Touch
-    </a>
+    <%= link_to "Get in Touch", membership_path(anchor: "committee"), class: "inline-flex items-center px-8 py-3 rounded-lg text-lg font-semibold bg-sand-400 text-navy-950 hover:bg-sand-300 transition-colors shadow-lg hover:shadow-xl" %>
   </div>
 </section>

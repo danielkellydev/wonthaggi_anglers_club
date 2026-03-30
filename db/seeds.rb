@@ -62,12 +62,13 @@ puts "  #{MembershipFee.count} fee categories seeded."
 # Committee Members
 puts "Seeding committee members..."
 [
-  { role: "President", name: "Stuart Lowe", phone: "0407 688 357", position: 1 },
+  { role: "President", name: "Stuart Lowe", phone: "0407 688 357", email: "basscoastlandscapes@gmail.com", position: 1 },
   { role: "Vice President", name: "Stephen Howell", phone: "0438 755 503", position: 2 },
 ].each do |data|
   CommitteeMember.find_or_create_by!(role: data[:role]) do |member|
     member.name = data[:name]
     member.phone = data[:phone]
+    member.email = data[:email]
     member.position = data[:position]
   end
 end

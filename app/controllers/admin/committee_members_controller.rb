@@ -42,7 +42,7 @@ module Admin
     end
 
     def committee_member_params
-      params.require(:committee_member).permit(:role, :name, :phone, :position)
+      params.require(:committee_member).permit(:role, :name, :phone, :email, :position)
     end
   end
 end

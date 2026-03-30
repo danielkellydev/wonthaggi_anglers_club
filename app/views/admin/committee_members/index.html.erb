@@ -11,6 +11,7 @@
           <th class="px-6 py-3">Role</th>
           <th class="px-6 py-3">Name</th>
           <th class="px-6 py-3">Phone</th>
+          <th class="px-6 py-3">Email</th>
           <th class="px-6 py-3">Position</th>
           <th class="px-6 py-3"></th>
         </tr>
@@ -21,6 +22,7 @@
             <td class="px-6 py-4 font-medium"><%= member.role %></td>
             <td class="px-6 py-4"><%= member.name %></td>
             <td class="px-6 py-4 text-gray-500"><%= member.phone %></td>
+            <td class="px-6 py-4 text-gray-500"><%= member.email %></td>
             <td class="px-6 py-4 text-gray-500"><%= member.position %></td>
             <td class="px-6 py-4 text-right space-x-3">
               <%= link_to "Edit", edit_admin_committee_member_path(member), class: "text-ocean-700 hover:text-ocean-600 font-medium" %>
