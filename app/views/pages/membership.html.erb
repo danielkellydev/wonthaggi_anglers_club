@@ -60,17 +60,24 @@
 <% end %>
 
 <%# ══════════════════════════════════════════════════════════════
-     Section 3 — CTA
+     Section 3 — Join Us
      ══════════════════════════════════════════════════════════════ %>
 <section class="py-16 sm:py-20 bg-gradient-to-br from-navy-900 via-navy-800 to-ocean-800 text-white">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <h2 class="text-3xl sm:text-4xl font-bold mb-4">Ready to Join?</h2>
+    <h2 class="text-3xl sm:text-4xl font-bold mb-4">Join Us</h2>
     <div class="mx-auto w-16 h-1 rounded-full bg-sand-400 mb-6"></div>
     <p class="text-lg text-navy-200 leading-relaxed mb-8 max-w-xl mx-auto">
-      Whether you're casting your first line or you've been fishing the Bass Coast for decades, there's a place for you at Wonthaggi Angling Club.
+      Download the membership form below, print it out, and bring it along to the clubrooms to sign up and pay in person.
     </p>
-    <a href="#committee" class="inline-flex items-center px-8 py-3 rounded-lg text-lg font-semibold bg-sand-400 text-navy-950 hover:bg-sand-300 transition-colors shadow-lg hover:shadow-xl">
-      Contact Us to Join
-    </a>
+    <% if @membership_form&.file&.attached? %>
+      <%= link_to rails_blob_path(@membership_form.file, disposition: "attachment"), class: "inline-flex items-center gap-2 px-8 py-3 rounded-lg text-lg font-semibold bg-sand-400 text-navy-950 hover:bg-sand-300 transition-colors shadow-lg hover:shadow-xl" do %>
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+        </svg>
+        Download Membership Form
+      <% end %>
+    <% else %>
+      <p class="text-navy-300">Membership form coming soon. Contact a committee member above for details.</p>
+    <% end %>
   </div>
 </section>

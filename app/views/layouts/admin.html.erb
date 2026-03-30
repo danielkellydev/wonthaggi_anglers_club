@@ -36,6 +36,7 @@
           <%= link_to "Fees", admin_membership_fees_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path.start_with?(admin_membership_fees_path) ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
           <%= link_to "Committee", admin_committee_members_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path.start_with?(admin_committee_members_path) ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
           <%= link_to "Sponsors", admin_sponsors_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path.start_with?(admin_sponsors_path) ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
+          <%= link_to "Settings", edit_admin_site_settings_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path.start_with?(edit_admin_site_settings_path) ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
         </div>
       </div>
     </div>

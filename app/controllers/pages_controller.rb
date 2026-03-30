@@ -22,5 +22,6 @@ class PagesController < ApplicationController
   def membership
     @membership_fees = MembershipFee.ordered
     @committee_members = CommitteeMember.ordered
+    @membership_form = SiteSetting.membership_form
   end
 end

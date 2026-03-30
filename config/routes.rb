@@ -15,6 +15,9 @@ Rails.application.routes.draw do
     resources :committee_members, except: [:show]
     resources :sponsors, except: [:show]
     resources :about_sections, except: [:show]
+    resource :site_settings, only: [:edit, :update] do
+      delete :destroy_file, on: :member
+    end
   end
 
   # Public
