@@ -21,7 +21,7 @@
       <img src="/WAClogo-white.png" alt="Wonthaggi Angling Club" class="sm:hidden h-32 w-32 mx-auto drop-shadow-lg">
       <span class="hidden sm:block text-5xl lg:text-6xl font-extrabold text-white tracking-tight">Wonthaggi Angling Club</span>
     </h1>
-    <p class="text-lg sm:text-xl text-navy-200 max-w-2xl mx-auto mb-8">
+    <p class="text-lg sm:text-xl text-navy-100 max-w-2xl mx-auto mb-8 leading-relaxed">
       Bass Coast's home of fishing since the early days. Join our community of passionate anglers — from weekend warriors to seasoned pros.
     </p>
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -53,7 +53,7 @@
       </div>
 
       <div class="text-center mt-10">
-        <%= link_to "View All News →", posts_path, class: "text-sm font-semibold text-ocean-700 hover:text-ocean-600 transition-colors" %>
+        <%= link_to "View All News →", posts_path, class: "inline-flex items-center text-base font-semibold text-ocean-700 hover:text-ocean-600 transition-colors" %>
       </div>
     <% else %>
       <p class="text-center text-gray-500">No news yet. Check back soon!</p>
@@ -79,7 +79,7 @@
       </div>
 
       <div class="text-center mt-10">
-        <%= link_to "View All Events →", events_path, class: "text-sm font-semibold text-ocean-700 hover:text-ocean-600 transition-colors" %>
+        <%= link_to "View All Events →", events_path, class: "inline-flex items-center text-base font-semibold text-ocean-700 hover:text-ocean-600 transition-colors" %>
       </div>
     </div>
   </section>
@@ -95,7 +95,7 @@
       <div>
         <h2 class="text-3xl sm:text-4xl font-bold mb-4">Become a Member</h2>
         <div class="w-16 h-1 rounded-full bg-sand-400 mb-6"></div>
-        <p class="text-lg text-navy-200 leading-relaxed mb-6">
+        <p class="text-lg text-navy-100 leading-relaxed mb-6">
           Whether you're casting your first line or you've been fishing the Bass Coast for decades, there's a place for you at Wonthaggi Angling Club. Join a community that shares your passion.
         </p>
         <%= link_to "Become a Member", membership_path, class: "inline-flex items-center px-8 py-3 rounded-lg text-lg font-semibold bg-sand-400 text-navy-950 hover:bg-sand-300 transition-colors shadow-lg hover:shadow-xl" %>
@@ -111,7 +111,7 @@
             </svg>
           </div>
           <h3 class="font-bold text-white mb-1">Competitions</h3>
-          <p class="text-sm text-navy-200">Regular fishing comps with great prizes and good times on the water.</p>
+          <p class="text-base text-navy-100">Regular fishing comps with great prizes and good times on the water.</p>
         </div>
 
         <%# Benefit 2 — Community %>
@@ -122,7 +122,7 @@
             </svg>
           </div>
           <h3 class="font-bold text-white mb-1">Community</h3>
-          <p class="text-sm text-navy-200">A welcoming club for anglers of all ages and skill levels.</p>
+          <p class="text-base text-navy-100">A welcoming club for anglers of all ages and skill levels.</p>
         </div>
 
         <%# Benefit 3 — Local Knowledge %>
@@ -133,7 +133,7 @@
             </svg>
           </div>
           <h3 class="font-bold text-white mb-1">Local Knowledge</h3>
-          <p class="text-sm text-navy-200">Decades of experience from Inverloch to Cape Paterson and beyond.</p>
+          <p class="text-base text-navy-100">Decades of experience from Inverloch to Cape Paterson and beyond.</p>
         </div>
 
         <%# Benefit 4 — Member Perks %>
@@ -144,7 +144,7 @@
             </svg>
           </div>
           <h3 class="font-bold text-white mb-1">Member Perks</h3>
-          <p class="text-sm text-navy-200">Exclusive discounts, gear access, and member-only events.</p>
+          <p class="text-base text-navy-100">Exclusive discounts, gear access, and member-only events.</p>
         </div>
       </div>
     </div>
@@ -168,7 +168,7 @@
         <% @gallery_images.each do |gallery_image| %>
           <% if gallery_image.image.attached? %>
             <div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer">
-              <%= image_tag gallery_image.image.variant(resize_to_fill: [400, 400]), class: "w-full h-full object-cover" %>
+              <%= image_tag gallery_image.image.variant(resize_to_fill: [400, 400]), alt: gallery_image.caption.presence || "Gallery photo", loading: "lazy", decoding: "async", class: "w-full h-full object-cover" %>
               <div class="absolute inset-0 bg-navy-950/0 group-hover:bg-navy-950/40 transition-colors flex items-center justify-center">
                 <svg class="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
@@ -198,11 +198,11 @@
       <% end %>
 
       <%# "View Full Gallery" card %>
-      <%= link_to gallery_path, class: "aspect-square rounded-xl border-2 border-dashed border-gray-300 hover:border-sand-400 transition-colors flex flex-col items-center justify-center text-gray-400 hover:text-sand-500 group" do %>
+      <%= link_to gallery_path, class: "aspect-square rounded-xl border-2 border-dashed border-gray-300 hover:border-sand-500 transition-colors flex flex-col items-center justify-center text-gray-600 hover:text-sand-700 group" do %>
         <svg class="h-10 w-10 mb-2 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" />
         </svg>
-        <span class="text-sm font-semibold">View Full Gallery</span>
+        <span class="text-base font-semibold">View Full Gallery</span>
       <% end %>
     </div>
   </div>
@@ -214,7 +214,7 @@
 <% if @sponsors.any? %>
   <section class="py-10 sm:py-12 bg-white border-t border-gray-100" data-controller="sponsor-ticker">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <p class="text-center text-xs font-semibold uppercase tracking-widest text-gray-400 mb-6">Proudly Supported By</p>
+      <p class="text-center text-xs font-semibold uppercase tracking-widest text-gray-600 mb-6">Proudly Supported By</p>
     </div>
     <div class="overflow-hidden">
       <div class="flex items-center gap-16 animate-ticker whitespace-nowrap" data-sponsor-ticker-target="track">
@@ -222,11 +222,11 @@
           <% if sponsor.logo.attached? %>
             <% if sponsor.website_url.present? %>
               <a href="<%= sponsor.website_url %>" target="_blank" rel="noopener noreferrer" class="shrink-0 opacity-60 hover:opacity-100 transition-opacity">
-                <%= image_tag sponsor.logo.variant(resize_to_fit: [160, 80]), alt: sponsor.name, class: "h-12 sm:h-16 w-auto object-contain" %>
+                <%= image_tag sponsor.logo.variant(resize_to_fit: [160, 80]), alt: sponsor.name, loading: "lazy", decoding: "async", class: "h-12 sm:h-16 w-auto object-contain" %>
               </a>
             <% else %>
               <span class="shrink-0 opacity-60">
-                <%= image_tag sponsor.logo.variant(resize_to_fit: [160, 80]), alt: sponsor.name, class: "h-12 sm:h-16 w-auto object-contain" %>
+                <%= image_tag sponsor.logo.variant(resize_to_fit: [160, 80]), alt: sponsor.name, loading: "lazy", decoding: "async", class: "h-12 sm:h-16 w-auto object-contain" %>
               </span>
             <% end %>
           <% else %>

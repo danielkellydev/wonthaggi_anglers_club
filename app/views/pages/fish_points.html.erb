@@ -4,12 +4,12 @@
     <div class="text-center mb-12">
       <h2 class="text-3xl sm:text-4xl font-bold text-charcoal">Fish Points</h2>
       <div class="mt-3 mx-auto w-16 h-1 rounded-full bg-sand-400"></div>
-      <p class="mt-4 text-gray-600 max-w-xl mx-auto">Points are calculated per 10 grams of fish weighed in. All fish must be weighed in scaled and gutted.</p>
+      <p class="mt-4 text-base text-gray-700 max-w-xl mx-auto leading-relaxed">Points are calculated per 10 grams of fish weighed in. All fish must be weighed in scaled and gutted.</p>
     </div>
 
     <% if @fish_points.any? %>
       <div class="bg-white rounded-xl shadow-md overflow-hidden">
-        <table class="w-full text-sm">
+        <table class="w-full text-base">
           <thead class="bg-navy-900 text-white text-left text-xs uppercase tracking-wider">
             <tr>
               <th class="px-6 py-3">Species</th>
@@ -22,14 +22,14 @@
                 <td class="px-6 py-3 font-medium text-charcoal">
                   <%= fp.name %>
                   <% if fp.notes.present? %>
-                    <span class="text-xs text-gray-500 ml-1">(<%= fp.notes %>)</span>
+                    <span class="text-sm text-gray-700 ml-1">(<%= fp.notes %>)</span>
                   <% end %>
                 </td>
                 <td class="px-6 py-3 text-right font-bold text-ocean-700">
                   <% if fp.points > 0 %>
                     <%= fp.points %>
                   <% else %>
-                    <span class="text-xs font-medium text-coral-600"><%= fp.notes %></span>
+                    <span class="text-sm font-medium text-coral-700"><%= fp.notes %></span>
                   <% end %>
                 </td>
               </tr>
@@ -38,7 +38,7 @@
         </table>
       </div>
     <% else %>
-      <p class="text-center text-gray-500">Fish points coming soon.</p>
+      <p class="text-center text-base text-gray-700">Fish points coming soon.</p>
     <% end %>
   </div>
 </section>

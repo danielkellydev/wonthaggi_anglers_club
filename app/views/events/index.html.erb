@@ -15,14 +15,14 @@
     <% end %>
 
     <% if @past_events.any? %>
-      <h2 class="text-xl font-bold text-gray-400 mb-6">Past Events</h2>
+      <h2 class="text-xl font-bold text-gray-600 mb-6">Past Events</h2>
       <div class="space-y-6 opacity-75">
         <% @past_events.each do |event| %>
           <%= render "events/card", event: event %>
         <% end %>
       </div>
     <% elsif @upcoming_events.empty? %>
-      <p class="text-center text-gray-500">No events yet. Check back soon!</p>
+      <p class="text-center text-base text-gray-700">No events yet. Check back soon!</p>
     <% end %>
   </div>
 </section>

@@ -1,17 +1,33 @@
 <!DOCTYPE html>
-<html class="scroll-smooth">
+<html lang="en-AU" class="scroll-smooth">
   <head>
-    <title><%= content_for(:title) || "Wonthaggi Angling Club" %></title>
+    <% page_title = content_for?(:title) ? "#{content_for(:title)} — Wonthaggi Angling Club" : "Wonthaggi Angling Club" %>
+    <% page_description = content_for?(:description) ? content_for(:description) : "Wonthaggi Angling Club — Bass Coast's home of fishing. Join our community of anglers for monthly competitions, social events, and great mates." %>
+    <title><%= page_title %></title>
+    <meta name="description" content="<%= page_description %>">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#0f172a">
+
+    <%# Open Graph / Twitter for link previews %>
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Wonthaggi Angling Club">
+    <meta property="og:title" content="<%= page_title %>">
+    <meta property="og:description" content="<%= page_description %>">
+    <meta property="og:image" content="<%= request.base_url %>/WAClogo.jpg">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="<%= page_title %>">
+    <meta name="twitter:description" content="<%= page_description %>">
+    <meta name="twitter:image" content="<%= request.base_url %>/WAClogo.jpg">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= yield :head %>
 
-    <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="icon" href="/icon.png" type="image/png" sizes="512x512">
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
@@ -19,6 +35,9 @@
   </head>
 
   <body class="bg-offwhite text-charcoal min-h-screen flex flex-col">
+    <%# Skip to main content (keyboard users) %>
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-navy-950 focus:text-white focus:rounded-lg focus:font-semibold">Skip to main content</a>
+
     <% is_homepage = controller_name == "pages" && action_name == "home" %>
 
     <%# ── Smart Navbar ── %>
@@ -99,7 +118,7 @@
       <div class="h-20 lg:h-24"></div>
     <% end %>
 
-    <main class="flex-1">
+    <main id="main-content" class="flex-1">
       <% if notice = flash[:notice] %>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
           <p class="py-2 px-4 bg-green-50 text-green-700 rounded-lg text-sm font-medium"><%= notice %></p>
