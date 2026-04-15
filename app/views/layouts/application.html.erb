@@ -26,10 +26,10 @@
          data-controller="navbar"
          data-navbar-homepage-value="<%= is_homepage %>">
 
-      <%# Large hero logo (homepage only, pinned top-left of viewport) %>
+<%# Large hero logo (homepage only, pinned top-left of viewport) — desktop/tablet only %>
       <% if is_homepage %>
-        <a href="/" class="fixed top-6 left-6 sm:top-8 sm:left-8 z-10 transition-all duration-300" data-navbar-target="heroLogo">
-          <img src="/WAClogo-white.png" alt="Wonthaggi Angling Club" class="h-24 w-24 sm:h-32 sm:w-32 lg:h-36 lg:w-36 drop-shadow-lg">
+        <a href="/" class="hidden sm:block sm:fixed sm:top-8 sm:left-8 z-10 transition-all duration-300" data-navbar-target="heroLogo">
+          <img src="/WAClogo-white.png" alt="" aria-hidden="true" class="sm:h-32 sm:w-32 lg:h-36 lg:w-36 drop-shadow-lg">
         </a>
       <% end %>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

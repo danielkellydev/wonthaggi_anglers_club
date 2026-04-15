@@ -10,38 +10,89 @@
   </head>
 
   <body class="bg-gray-50 text-charcoal min-h-screen flex flex-col">
-    <%# Top bar %>
-    <nav class="bg-navy-900 text-white shadow-md">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-14">
-          <span class="font-bold text-lg">Wonthaggi AC Admin</span>
-          <div class="flex items-center gap-4 text-sm">
-            <%= link_to "Change Password", edit_admin_password_path, class: "hover:text-sand-400 transition-colors" %>
-            <%= link_to "View Site", root_path, class: "hover:text-sand-400 transition-colors" %>
-            <%= button_to "Log Out", session_path, method: :delete, class: "hover:text-sand-400 transition-colors cursor-pointer" %>
+    <div data-controller="admin-nav">
+      <%# Top bar %>
+      <nav class="bg-navy-900 text-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between h-14">
+            <span class="font-bold text-lg">Wonthaggi AC Admin</span>
+
+            <%# Desktop top-right links %>
+            <div class="hidden md:flex items-center gap-4 text-sm">
+              <%= link_to "Change Password", edit_admin_password_path, class: "hover:text-sand-400 transition-colors" %>
+              <%= link_to "View Site", root_path, class: "hover:text-sand-400 transition-colors" %>
+              <%= button_to "Log Out", session_path, method: :delete, class: "hover:text-sand-400 transition-colors cursor-pointer" %>
+            </div>
+
+            <%# Mobile hamburger %>
+            <button type="button"
+                    class="md:hidden inline-flex items-center justify-center p-2 rounded-md hover:bg-white/10 transition-colors min-h-[44px] min-w-[44px]"
+                    data-action="click->admin-nav#toggle"
+                    aria-controls="admin-mobile-menu"
+                    aria-label="Toggle admin menu">
+              <svg data-admin-nav-target="openIcon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+              <svg data-admin-nav-target="closeIcon" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
           </div>
         </div>
-      </div>
-    </nav>
 
-    <%# Sub nav %>
-    <div class="bg-white border-b border-gray-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center gap-1 h-12 text-sm overflow-x-auto">
-          <%= link_to "Dashboard", admin_root_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path == admin_root_path ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
-          <%= link_to "Posts", admin_posts_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path.start_with?(admin_posts_path) ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
-          <%= link_to "Events", admin_events_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path.start_with?(admin_events_path) ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
-          <%= link_to "Gallery", admin_gallery_images_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path.start_with?(admin_gallery_images_path) ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
-          <%= link_to "Fish Points", admin_fish_points_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path.start_with?(admin_fish_points_path) ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
-          <%= link_to "Fees", admin_membership_fees_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path.start_with?(admin_membership_fees_path) ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
-          <%= link_to "Committee", admin_committee_members_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path.start_with?(admin_committee_members_path) ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
-          <%= link_to "Sponsors", admin_sponsors_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path.start_with?(admin_sponsors_path) ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
-          <%= link_to "Settings", edit_admin_site_settings_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path.start_with?(edit_admin_site_settings_path) ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
+        <%# Mobile menu panel %>
+        <div id="admin-mobile-menu" class="hidden md:hidden border-t border-white/10 bg-navy-800" data-admin-nav-target="menu">
+          <div class="px-4 py-3 space-y-1 text-sm">
+            <% admin_links = [
+              ["Dashboard", admin_root_path, admin_root_path],
+              ["Posts", admin_posts_path, admin_posts_path],
+              ["Events", admin_events_path, admin_events_path],
+              ["Gallery", admin_gallery_images_path, admin_gallery_images_path],
+              ["Fish Points", admin_fish_points_path, admin_fish_points_path],
+              ["Fees", admin_membership_fees_path, admin_membership_fees_path],
+              ["Committee", admin_committee_members_path, admin_committee_members_path],
+              ["Sponsors", admin_sponsors_path, admin_sponsors_path],
+              ["Settings", edit_admin_site_settings_path, edit_admin_site_settings_path],
+            ] %>
+            <% admin_links.each do |label, href, match_prefix| %>
+              <% active = (match_prefix == admin_root_path) ? (request.path == admin_root_path) : request.path.start_with?(match_prefix) %>
+              <%= link_to label, href,
+                    data: { action: "click->admin-nav#closeMenu" },
+                    class: "flex items-center min-h-[48px] px-3 rounded-md font-medium transition-colors #{active ? 'bg-white/15 text-white' : 'text-white/80 hover:bg-white/10 hover:text-white'}" %>
+            <% end %>
+
+            <div class="h-px bg-white/10 my-2"></div>
+            <%= link_to "Change Password", edit_admin_password_path,
+                  data: { action: "click->admin-nav#closeMenu" },
+                  class: "flex items-center min-h-[48px] px-3 rounded-md font-medium text-white/80 hover:bg-white/10 hover:text-white transition-colors" %>
+            <%= link_to "View Site", root_path,
+                  data: { action: "click->admin-nav#closeMenu" },
+                  class: "flex items-center min-h-[48px] px-3 rounded-md font-medium text-white/80 hover:bg-white/10 hover:text-white transition-colors" %>
+            <%= button_to "Log Out", session_path, method: :delete,
+                  class: "w-full text-left min-h-[48px] px-3 rounded-md font-medium text-white/80 hover:bg-white/10 hover:text-white transition-colors cursor-pointer" %>
+          </div>
+        </div>
+      </nav>
+
+      <%# Sub nav (desktop/tablet only) %>
+      <div class="hidden md:block bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center gap-1 h-12 text-sm overflow-x-auto">
+            <%= link_to "Dashboard", admin_root_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path == admin_root_path ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
+            <%= link_to "Posts", admin_posts_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path.start_with?(admin_posts_path) ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
+            <%= link_to "Events", admin_events_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path.start_with?(admin_events_path) ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
+            <%= link_to "Gallery", admin_gallery_images_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path.start_with?(admin_gallery_images_path) ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
+            <%= link_to "Fish Points", admin_fish_points_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path.start_with?(admin_fish_points_path) ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
+            <%= link_to "Fees", admin_membership_fees_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path.start_with?(admin_membership_fees_path) ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
+            <%= link_to "Committee", admin_committee_members_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path.start_with?(admin_committee_members_path) ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
+            <%= link_to "Sponsors", admin_sponsors_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path.start_with?(admin_sponsors_path) ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
+            <%= link_to "Settings", edit_admin_site_settings_path, class: "px-3 py-1.5 rounded-md font-medium hover:bg-gray-100 transition-colors whitespace-nowrap #{request.path.start_with?(edit_admin_site_settings_path) ? 'bg-gray-100 text-ocean-700' : 'text-gray-600'}" %>
+          </div>
         </div>
       </div>
     </div>
 
-    <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+    <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 w-full">
       <% if notice = flash[:notice] %>
         <p class="py-2 px-4 bg-green-50 text-green-700 rounded-lg mb-6 text-sm font-medium"><%= notice %></p>
       <% end %>

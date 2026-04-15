@@ -1,6 +1,6 @@
-<div class="flex items-center justify-between mb-6">
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
   <h1 class="text-2xl font-bold text-charcoal">Sponsors</h1>
-  <%= link_to "New Sponsor", new_admin_sponsor_path, class: "inline-flex items-center px-4 py-2 rounded-lg bg-ocean-700 text-white text-sm font-semibold hover:bg-ocean-600 transition-colors" %>
+  <%= link_to "New Sponsor", new_admin_sponsor_path, class: "inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-ocean-700 text-white text-sm font-semibold hover:bg-ocean-600 transition-colors min-h-[44px]" %>
 </div>
 
 <% if @sponsors.any? %>
@@ -24,9 +24,9 @@
             <p class="text-xs text-gray-400 truncate"><%= sponsor.website_url %></p>
           <% end %>
           <p class="text-xs text-gray-400">Position: <%= sponsor.position %></p>
-          <div class="flex items-center gap-3 mt-2">
-            <%= link_to "Edit", edit_admin_sponsor_path(sponsor), class: "text-xs text-ocean-700 hover:text-ocean-600 font-medium" %>
-            <%= button_to "Delete", admin_sponsor_path(sponsor), method: :delete, class: "text-xs text-red-600 hover:text-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Delete this sponsor?" } %>
+          <div class="flex items-center gap-2 mt-3">
+            <%= link_to "Edit", edit_admin_sponsor_path(sponsor), class: "flex-1 inline-flex items-center justify-center min-h-[40px] px-3 rounded-lg bg-ocean-50 text-ocean-700 text-xs font-semibold hover:bg-ocean-100 transition-colors" %>
+            <%= button_to "Delete", admin_sponsor_path(sponsor), method: :delete, class: "flex-1 inline-flex items-center justify-center min-h-[40px] px-3 rounded-lg bg-red-50 text-red-600 text-xs font-semibold hover:bg-red-100 transition-colors cursor-pointer", form: { class: "flex-1" }, data: { turbo_confirm: "Delete this sponsor?" } %>
           </div>
         </div>
       </div>

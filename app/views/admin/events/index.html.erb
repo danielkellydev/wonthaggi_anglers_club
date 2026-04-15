@@ -1,10 +1,11 @@
-<div class="flex items-center justify-between mb-6">
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
   <h1 class="text-2xl font-bold text-charcoal">Events</h1>
-  <%= link_to "New Event", new_admin_event_path, class: "inline-flex items-center px-4 py-2 rounded-lg bg-ocean-700 text-white text-sm font-semibold hover:bg-ocean-600 transition-colors" %>
+  <%= link_to "New Event", new_admin_event_path, class: "inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-ocean-700 text-white text-sm font-semibold hover:bg-ocean-600 transition-colors min-h-[44px]" %>
 </div>
 
-<div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-  <% if @events.any? %>
+<% if @events.any? %>
+  <%# Desktop/tablet table %>
+  <div class="hidden md:block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
     <table class="w-full text-sm">
       <thead class="bg-gray-50 text-left text-xs uppercase tracking-wider text-gray-500">
         <tr>
@@ -36,7 +37,33 @@
         <% end %>
       </tbody>
     </table>
-  <% else %>
+  </div>
+
+  <%# Mobile card list %>
+  <div class="md:hidden space-y-3">
+    <% @events.each do |event| %>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+        <div class="flex items-start justify-between gap-3 mb-2">
+          <h2 class="font-semibold text-charcoal leading-snug"><%= event.title %></h2>
+          <% if event.published? %>
+            <span class="shrink-0 inline-block px-2 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-800">Published</span>
+          <% else %>
+            <span class="shrink-0 inline-block px-2 py-0.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-600">Draft</span>
+          <% end %>
+        </div>
+        <div class="text-xs text-gray-500 space-y-0.5 mb-4">
+          <p><%= event.starts_at.strftime("%d %b %Y, %l:%M %p") %></p>
+          <% if event.location.present? %><p><%= event.location %></p><% end %>
+        </div>
+        <div class="flex items-center gap-2">
+          <%= link_to "Edit", edit_admin_event_path(event), class: "flex-1 inline-flex items-center justify-center min-h-[44px] px-4 rounded-lg bg-ocean-50 text-ocean-700 font-semibold text-sm hover:bg-ocean-100 transition-colors" %>
+          <%= button_to "Delete", admin_event_path(event), method: :delete, class: "flex-1 inline-flex items-center justify-center min-h-[44px] px-4 rounded-lg bg-red-50 text-red-600 font-semibold text-sm hover:bg-red-100 transition-colors cursor-pointer", form: { class: "flex-1" }, data: { turbo_confirm: "Delete this event?" } %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class="bg-white rounded-xl shadow-sm border border-gray-100">
     <p class="px-6 py-8 text-center text-gray-500">No events yet. <%= link_to "Create one", new_admin_event_path, class: "text-ocean-700 hover:text-ocean-600 font-medium" %>.</p>
-  <% end %>
-</div>
+  </div>
+<% end %>
