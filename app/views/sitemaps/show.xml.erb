@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc><%= root_url %></loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc><%= about_url %></loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc><%= membership_url %></loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc><%= fish_points_url %></loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc><%= sponsors_url %></loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc><%= posts_url %></loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc><%= events_url %></loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc><%= gallery_url %></loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <% @posts.each do |post| %>
+    <url>
+      <loc><%= post_url(post) %></loc>
+      <lastmod><%= (post.updated_at || post.published_at || post.created_at).iso8601 %></lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
+    </url>
+  <% end %>
+  <% @events.each do |event| %>
+    <url>
+      <loc><%= event_url(event) %></loc>
+      <lastmod><%= event.updated_at.iso8601 %></lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
+    </url>
+  <% end %>
+</urlset>

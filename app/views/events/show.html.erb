@@ -1,3 +1,6 @@
+<% content_for :title, @event.title %>
+<% content_for :description, "#{@event.starts_at.strftime("%-d %B %Y")} — #{@event.location.presence || "Wonthaggi Angling Club"}. #{truncate(@event.description.to_plain_text.squish, length: 120) if @event.description.present?}".strip %>
+
 <section class="py-16 sm:py-20 bg-offwhite">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
     <% if @event.featured_image.attached? %>

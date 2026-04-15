@@ -1,0 +1,25 @@
+<%# Schema.org SportsClub markup for local SEO %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportsClub",
+  "name": "Wonthaggi Angling Club",
+  "alternateName": "WAC",
+  "description": "A community of passionate anglers based in the Bass Coast region of Victoria, Australia. Monthly competitions, social events and a welcoming clubroom.",
+  "url": "<%= root_url %>",
+  "logo": "<%= request.base_url %>/WAClogo.jpg",
+  "image": "<%= request.base_url %>/WAClogo.jpg",
+  "sport": "Fishing",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "McBride Avenue",
+    "addressLocality": "Wonthaggi",
+    "addressRegion": "VIC",
+    "addressCountry": "AU"
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Bass Coast, Victoria"
+  }
+}
+</script>

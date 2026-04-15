@@ -1,3 +1,6 @@
+<% content_for :title, @post.title %>
+<% content_for :description, truncate(@post.body.to_plain_text.squish, length: 160) if @post.body.present? %>
+
 <section class="py-16 sm:py-20 bg-offwhite">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
     <% if @post.featured_image.attached? %>

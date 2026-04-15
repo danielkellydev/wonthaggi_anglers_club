@@ -29,6 +29,9 @@ Rails.application.routes.draw do
   get "fish-points", to: "pages#fish_points", as: :fish_points
   get "membership", to: "pages#membership", as: :membership
 
+  # SEO
+  get "sitemap.xml", to: "sitemaps#show", as: :sitemap, defaults: { format: :xml }
+
   # Health check
   get "up" => "rails/health#show", as: :rails_health_check
 
