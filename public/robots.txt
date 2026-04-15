@@ -4,3 +4,5 @@ User-agent: *
 Disallow: /admin
 Disallow: /session
 Disallow: /passwords
+
+Sitemap: https://www.wonthaggiangling.com.au/sitemap.xml
