@@ -9,6 +9,8 @@ class PagesController < ApplicationController
   end
 
   def about
+    @competitions = Competition.ordered
+    @fish_of_the_months = FishOfTheMonth.ordered
   end
 
   def sponsors
@@ -16,7 +18,6 @@ class PagesController < ApplicationController
   end
 
   def fish_points
-    @fish_points = FishPoint.ordered
   end
 
   def membership

@@ -1,47 +1,51 @@
 <% content_for :title, "Fish Points" %>
-<% content_for :description, "Points table for Wonthaggi Angling Club competitions. Points are calculated per 10 grams of fish weighed in." %>
+<% content_for :description, "Points system for Wonthaggi Angling Club competitions. Points accumulate across the season toward the yearly champions." %>
 
 <section class="py-16 sm:py-20 bg-offwhite">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <%# Section heading %>
     <div class="text-center mb-12">
-      <h2 class="text-3xl sm:text-4xl font-bold text-charcoal">Fish Points</h2>
+      <h2 class="text-3xl sm:text-4xl font-bold text-charcoal">Points System</h2>
       <div class="mt-3 mx-auto w-16 h-1 rounded-full bg-sand-400"></div>
-      <p class="mt-4 text-base text-gray-700 max-w-xl mx-auto leading-relaxed">Points are calculated per 10 grams of fish weighed in. All fish must be weighed in scaled and gutted.</p>
+      <p class="mt-4 text-base text-gray-700 max-w-xl mx-auto leading-relaxed">Points are awarded at each monthly competition and accumulate across the season toward the yearly champion. All fish must be weighed in scaled and gutted.</p>
+
+      <div class="mt-6 flex justify-center">
+        <a href="/booklet-2026-2027.pdf" target="_blank" rel="noopener"
+           class="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-base font-semibold bg-sand-400 text-navy-950 hover:bg-sand-300 transition-colors shadow-md">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+          </svg>
+          Download 2026–2027 Club Booklet (PDF)
+        </a>
+      </div>
     </div>
 
-    <% if @fish_points.any? %>
-      <div class="bg-white rounded-xl shadow-md overflow-hidden">
-        <table class="w-full text-base">
-          <thead class="bg-navy-900 text-white text-left text-xs uppercase tracking-wider">
-            <tr>
-              <th class="px-6 py-3">Species</th>
-              <th class="px-6 py-3 text-right">Points (per 10g)</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-100">
-            <% @fish_points.each do |fp| %>
-              <tr class="hover:bg-gray-50">
-                <td class="px-6 py-3 font-medium text-charcoal">
-                  <%= fp.name %>
-                  <% if fp.notes.present? %>
-                    <span class="text-sm text-gray-700 ml-1">(<%= fp.notes %>)</span>
-                  <% end %>
-                </td>
-                <td class="px-6 py-3 text-right font-bold text-ocean-700">
-                  <% if fp.points > 0 %>
-                    <%= fp.points %>
-                  <% else %>
-                    <span class="text-sm font-medium text-coral-700"><%= fp.notes %></span>
-                  <% end %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white rounded-xl shadow-md p-6 text-center border-t-4 border-ocean-700">
+        <p class="text-5xl font-extrabold text-ocean-700 mb-2">12</p>
+        <p class="text-sm font-semibold uppercase tracking-wider text-gray-600 mb-2">points</p>
+        <h3 class="font-bold text-charcoal text-lg">Heaviest Fish of the Month</h3>
+        <p class="text-base text-gray-700 mt-2 leading-relaxed">Awarded to the overall heaviest Fish of the Month across the field.</p>
       </div>
-    <% else %>
-      <p class="text-center text-base text-gray-700">Fish points coming soon.</p>
-    <% end %>
+
+      <div class="bg-white rounded-xl shadow-md p-6 text-center border-t-4 border-sand-500">
+        <p class="text-5xl font-extrabold text-sand-700 mb-2">9</p>
+        <p class="text-sm font-semibold uppercase tracking-wider text-gray-600 mb-2">points</p>
+        <h3 class="font-bold text-charcoal text-lg">Any Other Fish of the Month</h3>
+        <p class="text-base text-gray-700 mt-2 leading-relaxed">For every additional Fish of the Month species caught and weighed in.</p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-md p-6 text-center border-t-4 border-coral-400">
+        <p class="text-5xl font-extrabold text-coral-600 mb-2">6</p>
+        <p class="text-sm font-semibold uppercase tracking-wider text-gray-600 mb-2">points</p>
+        <h3 class="font-bold text-charcoal text-lg">Any Other Species</h3>
+        <p class="text-base text-gray-700 mt-2 leading-relaxed">For any other legal-length species weighed in on competition day.</p>
+      </div>
+    </div>
+
+    <div class="mt-10 bg-white rounded-xl shadow-md p-6 text-base text-gray-700 leading-relaxed">
+      <p>Points are accumulated throughout the year, so it's important to weigh in any fish that is legal length to keep adding to your yearly champion points. Champions and runners-up in Juniors, Seniors, and Veterans categories are presented at the end-of-season night.</p>
+      <p class="mt-3">See the <%= link_to "About page", about_path, class: "text-ocean-700 underline hover:text-ocean-600" %> for the Fish of the Month calendar and prize amounts.</p>
+    </div>
   </div>
 </section>

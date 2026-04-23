@@ -6,43 +6,6 @@ end
 
 puts "Admin user created: wacadmin / password"
 
-# Fish Points
-puts "Seeding fish points..."
-[
-  { name: "Garfish", points: 60, position: 1 },
-  { name: "School Whiting", points: 60, position: 2 },
-  { name: "Sweep", points: 30, position: 3 },
-  { name: "King George Whiting", points: 28, position: 4 },
-  { name: "Mullet", points: 28, position: 5 },
-  { name: "Sole/Flounder", points: 28, position: 6 },
-  { name: "Magpie Bream", points: 26, position: 7 },
-  { name: "Trumpeter", points: 26, position: 8 },
-  { name: "Luderick", points: 25, position: 9 },
-  { name: "Bream", points: 25, position: 10 },
-  { name: "Redfin", points: 23, position: 11 },
-  { name: "Silver Trevally", points: 20, position: 12 },
-  { name: "Estuary Perch", points: 20, position: 13 },
-  { name: "Fresh Water Trout", points: 15, position: 14 },
-  { name: "Flathead", points: 15, notes: "All species", position: 15 },
-  { name: "Tailor", points: 15, position: 16 },
-  { name: "Australian Salmon", points: 12, position: 17 },
-  { name: "Snook", points: 12, position: 18 },
-  { name: "Grass Whiting", points: 10, position: 19 },
-  { name: "Snapper", points: 8, position: 20 },
-  { name: "Gummy", points: 8, position: 21 },
-  { name: "Barracouta", points: 8, position: 22 },
-  { name: "Pike", points: 8, position: 23 },
-  { name: "Tuna", points: 0, notes: "365 Comp only", position: 24 },
-  { name: "Kingfish", points: 0, notes: "365 Comp only", position: 25 },
-].each do |data|
-  FishPoint.find_or_create_by!(name: data[:name]) do |fp|
-    fp.points = data[:points]
-    fp.notes = data[:notes]
-    fp.position = data[:position]
-  end
-end
-puts "  #{FishPoint.count} fish species seeded."
-
 # Membership Fees
 puts "Seeding membership fees..."
 [
@@ -59,20 +22,80 @@ puts "Seeding membership fees..."
 end
 puts "  #{MembershipFee.count} fee categories seeded."
 
-# Committee Members
+# Committee Members (source: 2026-2027 Club Information Handbook)
 puts "Seeding committee members..."
 [
   { role: "President", name: "Stuart Lowe", phone: "0407 688 357", email: "basscoastlandscapes@gmail.com", position: 1 },
-  { role: "Vice President", name: "Stephen Howell", phone: "0438 755 503", position: 2 },
+  { role: "Treasurer", name: "Stuart Lowe", phone: "0407 688 357", position: 2 },
+  { role: "Secretary", name: "Ian Gilbee", phone: "0409 353 868", position: 3 },
+  { role: "General Committee", name: "Stephen Howell", phone: "0438 755 503", position: 4 },
+  { role: "General Committee", name: "Maxine Kelly", phone: "0418 566 623", position: 5 },
+  { role: "General Committee", name: "Allan Bentick", phone: "0468 349 668", position: 6 },
 ].each do |data|
-  CommitteeMember.find_or_create_by!(role: data[:role]) do |member|
-    member.name = data[:name]
+  CommitteeMember.find_or_create_by!(role: data[:role], name: data[:name]) do |member|
     member.phone = data[:phone]
     member.email = data[:email]
     member.position = data[:position]
   end
 end
 puts "  #{CommitteeMember.count} committee members seeded."
+
+# Competitions (source: 2026-2027 Club Information Handbook)
+puts "Seeding competitions..."
+competitions = [
+  {
+    name: "Monthly Competition",
+    position: 1,
+    description: %Q(Held on the <strong>third Sunday of each month</strong>. Fish can be entered from any open Victorian waters. Weigh-in is between 5pm and 6pm, followed by a free dinner and Happy Hour pricing ($4 beers, $6 spirits, $2 soft drinks). Raffles at every weigh-in with meat trays and vouchers up for grabs. Bonus points for the month's selected <strong>Fish of the Month</strong>.),
+  },
+  {
+    name: "365 Day Comp",
+    position: 2,
+    description: %Q(Every day can be a comp day — for juniors and seniors. Enter as many times as you like at $2 per entry; entries are kept secret. A <strong>$25 prize</strong> goes to the heaviest fish of the year in each category: Whiting, Bream, Flathead, Perch, Salmon, Garfish, Snapper, Mullet, Gummy Shark, and Trevally. To enter, contact a committee member to weigh your fish (can be weighed whole).),
+  },
+  {
+    name: "Local Bream Classic",
+    position: 3,
+    description: %Q(<strong>Sunday 12th April 2026</strong>. Rivers fished: Bass River, Powlett River, Screw Creek, and Tarwin River. Prizes for each section (Junior Female, Junior Male, Senior Female, Senior Male, Veterans 60+): <strong>$200 first prize</strong>, <strong>$100 voucher</strong> for Inverloch Fishing and Outdoors for runner-up. Barbecue at weigh-in. Visitors most welcome.),
+  },
+  {
+    name: "Tambo River Comp",
+    position: 4,
+    description: %Q(<strong>Saturday 24th October 2026</strong>. Only the Tambo River can be fished, bank fishing only. Weigh-in <strong>5pm–6pm at Lealow Caravan Park</strong>. Barbecue at weigh-in. Visitors most welcome.),
+  },
+]
+competitions.each do |data|
+  Competition.find_or_create_by!(name: data[:name]) do |c|
+    c.description = data[:description]
+    c.position = data[:position]
+  end
+end
+puts "  #{Competition.count} competitions seeded."
+
+# Fish of the Month (source: 2026-2027 Club Information Handbook)
+puts "Seeding fish of the month calendar..."
+[
+  { fishing_date: Date.new(2026, 4, 19),  target_species: "Perch" },
+  { fishing_date: Date.new(2026, 5, 17),  target_species: "Perch" },
+  { fishing_date: Date.new(2026, 6, 21),  target_species: "Salmon" },
+  { fishing_date: Date.new(2026, 7, 19),  target_species: "Salmon" },
+  { fishing_date: Date.new(2026, 8, 16),  target_species: "Bream" },
+  { fishing_date: Date.new(2026, 9, 20),  target_species: "Bream" },
+  { fishing_date: Date.new(2026, 10, 18), target_species: "Snapper" },
+  { fishing_date: Date.new(2026, 11, 15), target_species: "Snapper" },
+  { fishing_date: Date.new(2026, 12, 20), target_species: "Flathead" },
+  { fishing_date: Date.new(2027, 1, 17),  target_species: "Garfish" },
+  { fishing_date: Date.new(2027, 2, 21),  target_species: "Whiting" },
+  { fishing_date: Date.new(2027, 3, 21),  target_species: "Whiting" },
+  { fishing_date: Date.new(2026, 4, 12),  target_species: "Local Bream Classic", special_event: true },
+  { fishing_date: Date.new(2026, 10, 24), target_species: "Tambo River Comp",    special_event: true },
+].each do |data|
+  FishOfTheMonth.find_or_create_by!(fishing_date: data[:fishing_date]) do |entry|
+    entry.target_species = data[:target_species]
+    entry.special_event = data[:special_event] || false
+  end
+end
+puts "  #{FishOfTheMonth.count} calendar entries seeded."
 
 # About Sections
 puts "Seeding about sections..."

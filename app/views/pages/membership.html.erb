@@ -72,15 +72,25 @@
     <p class="text-lg text-navy-100 leading-relaxed mb-8 max-w-xl mx-auto">
       Download the membership form below, print it out, and bring it along to the clubrooms to sign up and pay in person.
     </p>
-    <% if @membership_form&.file&.attached? %>
-      <%= link_to rails_blob_path(@membership_form.file, disposition: "attachment"), class: "inline-flex items-center gap-2 px-8 py-3 rounded-lg text-lg font-semibold bg-sand-400 text-navy-950 hover:bg-sand-300 transition-colors shadow-lg hover:shadow-xl" do %>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 flex-wrap">
+      <% if @membership_form&.file&.attached? %>
+        <%= link_to rails_blob_path(@membership_form.file, disposition: "attachment"), class: "inline-flex items-center gap-2 px-8 py-3 rounded-lg text-lg font-semibold bg-sand-400 text-navy-950 hover:bg-sand-300 transition-colors shadow-lg hover:shadow-xl" do %>
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+          </svg>
+          Download Membership Form
+        <% end %>
+      <% else %>
+        <p class="text-base text-navy-100">Membership form coming soon. Contact a committee member above for details.</p>
+      <% end %>
+
+      <a href="/booklet-2026-2027.pdf" target="_blank" rel="noopener"
+         class="inline-flex items-center gap-2 px-8 py-3 rounded-lg text-lg font-semibold border-2 border-white/40 text-white hover:bg-white/10 transition-colors">
         <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
         </svg>
-        Download Membership Form
-      <% end %>
-    <% else %>
-      <p class="text-base text-navy-100">Membership form coming soon. Contact a committee member above for details.</p>
-    <% end %>
+        Download 2026–2027 Club Booklet
+      </a>
+    </div>
   </div>
 </section>

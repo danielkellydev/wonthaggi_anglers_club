@@ -10,9 +10,10 @@ Rails.application.routes.draw do
     resources :posts
     resources :events
     resources :gallery_images, except: [:show]
-    resources :fish_points, except: [:show]
     resources :membership_fees, except: [:show]
     resources :committee_members, except: [:show]
+    resources :competitions, except: [:show]
+    resources :fish_of_the_months, except: [:show]
     resources :sponsors, except: [:show]
     resources :about_sections, except: [:show]
     resource :site_settings, only: [:edit, :update] do
